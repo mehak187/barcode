@@ -77,6 +77,13 @@
                                 @if(isset($error_message))
                                 <div class="alert alert-danger py-2">{{ $error_message }}</div>
                                 @endif
+                                @if (session('success'))
+                                    <div class="row">
+                                        <p class="py-2 px-3 bg-success text-white my-3 rounded">
+                                            {{ session('success') }}
+                                        </p>
+                                    </div>
+                                @endif
                                 @foreach ($gyms as $gym)
                                 <div class="bg-grey row px-3 align-items-center py-3 rounded-3 my-3 customer service-box">
                                     <div class="col-sm-11">

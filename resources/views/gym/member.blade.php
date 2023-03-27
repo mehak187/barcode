@@ -176,9 +176,9 @@
         <div class="modal-dialog d-flex align-items-center h-100">
             <div class="modal-content">
                 <div class="bg-white shadow rounded-3 position-relative px-4 py-5">
-                    <div class="pb-a">
+                    <div class="pb-a" style="top:12px;right:12px">
                         <i class="fa-solid fa-xmark blue-bg rounded-circle p-2 text-white fs-6"
-                            data-bs-dismiss="modal"></i>
+                            data-bs-dismiss="modal" style="padding:10px 12px !important" ></i>
                     </div>
                     <div class="text-center">
                         <i class="fa-solid fa-question bg-warning rounded-circle blue-cl fs-5 p-3"></i>
@@ -227,17 +227,20 @@
         <div class="modal d-block" id="myModal">
             <div class="modal-dialog d-flex align-items-center h-100">
                 <div class="modal-content">
-                    <div class="bg-white shadow rounded-3 position-relative px-4 py-5">
-                        <div class="pb-a">
+                    <div class="bg-white shadow rounded-3 position-relative ">
+                        <div class="py-2 bg-warning">
                             {{-- <i class="fa-solid fa-xmark blue-bg rounded-circle p-2 text-white fs-6"
                                 data-bs-dismiss="modal"></i> --}}
+                            <div class="pb-0 text-center px-3 text-white fs-4">
+                                Email sent successfully
+                            </div>
                         </div>
                         <!-- <div class="text-center">
                             <i class="fa-solid fa-question bg-warning rounded-circle blue-cl fs-5 p-3"></i>
                         </div> -->
 
-                        <div class="py-4 text-center fs-5">
-                            Email sent to admin. You can also call out Toll Free line of 888-539-8241
+                        <div class="py-5 text-center fs-5 px-4 py-5 my-4">
+                            Email sent to admin for purchasing barcodes
                         </div>
                     </div>
                 </div>

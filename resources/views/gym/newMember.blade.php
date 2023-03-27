@@ -166,7 +166,7 @@
                         <div class="col-sm-6">
                             <div class="mt-3">
                                 <label for="m-contact" class="form-label blue-cl fw-bold px-1 fs-5">Contact</label>
-                                <input type="text" class="form-control shadow-none text-secondary" id="m-contact"
+                                <input type="tel" class="form-control shadow-none text-secondary" id="m-contact"
                                     placeholder="+1 783 783 119 008" name="contact" value="{{ old('contact') }}">
                                 @error('contact')
                                     <span class="error text-danger">
@@ -249,6 +249,11 @@
             </div>
         </div>
     </div>
+    <style>
+        input::placeholder {
+            color: rgba(128,128,128,0.7) !important
+        }
+    </style>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>

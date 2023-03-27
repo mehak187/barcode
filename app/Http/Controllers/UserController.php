@@ -56,7 +56,7 @@ class UserController extends Controller
             'photo' => $photo_name,
         ]);
         session()->put('mid', $user->id);
-        return redirect('/newCustomer')->with('success', "Gym added successfully");
+        return redirect('/customersList')->with('success', "Gym added successfully");
     }
     public function saveGymBarcode(Request $req)
     {
@@ -168,7 +168,7 @@ class UserController extends Controller
         }
 
         $data['results'] = $result;
-        return view('admin.barcodesOfGym', $data);
+        return view('admin.addedByAdmin', $data);
     }
     // ---------used-barcodes-----
     public function usedBarcodes($id)

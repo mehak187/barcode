@@ -47,11 +47,6 @@
 
                 {{-- ----------form------ --}}
                 <form method="POST" action="/saveGym" enctype="multipart/form-data">
-                    @if (session('success'))
-                        <p class="py-2 px-3 bg-success text-white my-3 rounded">
-                            {{ session('success') }}
-                        </p>
-                    @endif
                     @csrf
                     <div class="position-relative position-rel">
                         <img src="{{ asset('/img/dev-2.png') }}"
@@ -85,7 +80,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="mt-3">
                                 <input type="email" class="form-control shadow-none text-secondary" name="email"
-                                    value="{{ old('email') }}" id="m-email" placeholder="Email">
+                                    value="" id="m-email" placeholder="Email">
                                 @error('email')
                                     <span class="error text-danger">
                                         {{ $message }}
@@ -95,7 +90,7 @@
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <div class="mt-3">
-                                <input type="text" class="form-control shadow-none text-secondary" name="contact"
+                                <input type="tel" class="form-control shadow-none text-secondary" name="contact"
                                     value="{{ old('contact') }}" id="m-email" placeholder="Contact">
                                 @error('contact')
                                     <span class="error text-danger">

@@ -63,6 +63,7 @@
             <!-- -----detail boxes----- -->
                     <div class="row bg-white shadow px-2 px-sm-4 px-xxl-5 py-4 mt-4 rounded-4 det-box">
                         <!-- ----box----- -->
+                        @if (!empty($results))
                         @foreach ($results as $result)
                         <div class="col-md-6 col-lg-4 col-xl-3 my-3">
                             <div class="bg-grey px-4 py-2 rounded-4 pt-5 d-flex flex-column align-items-center">
@@ -71,6 +72,12 @@
                             </div>
                         </div>
                         @endforeach
+                        @else
+                        {{-- @if (empty($mUsedBarcode)) --}}
+                        <div class="alert alert-danger py-2">
+                            No barcode left
+                        </div>
+                        @endif
                     </div>
                 </div>
             </div>

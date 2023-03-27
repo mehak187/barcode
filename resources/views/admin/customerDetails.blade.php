@@ -151,7 +151,7 @@
                                 <label for="rangeInput" class="form-label blue-cl fs-5 fw-bold">No. of
                                     barcodes:</label>
                                 <input type="number" class="form-control" name="branches" placeholder="01"
-                                    value="" id="myRange" onchange="updateValue()">
+                                    value="" id="myRange" onchange="updateValue()" max="{{$orderBarcodesTot}}">
                             </div>
                             <div class="mt-3">
                                 <?php $from_value = $maxs + 1; ?>

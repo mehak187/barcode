@@ -103,7 +103,7 @@
                   <div class="col-sm-6">
                     <div class="mt-3">
                       <label for="m-contact" class="form-label blue-cl fw-bold px-1 fs-5">Contact</label>
-                      <input type="number" class="form-control shadow-none text-secondary" id="m-contact" value="{{$upmembers->contact}}" name="contact">
+                      <input type="tel" class="form-control shadow-none text-secondary" id="m-contact" value="{{$upmembers->contact}}" name="contact">
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -130,6 +130,7 @@
         </div>
       </div>
   </body>
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"

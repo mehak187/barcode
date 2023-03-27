@@ -64,13 +64,19 @@
                     <div class="row bg-white shadow px-2 px-sm-4 px-xxl-5 py-4 mt-4 rounded-4 det-box">
                         <!-- ----box----- -->
                         @foreach ($results as $barnmbr)
-                        <div class="col-md-6 col-lg-4 col-xl-3 my-3">
-                            <div class="bg-grey px-4 py-2 rounded-4 pt-5 d-flex flex-column align-items-center">
-                                <div class="my-barcode mt-4">{{ str_pad($barnmbr, 10, '0', STR_PAD_LEFT) }}</div>
-                                <p>{{ str_pad($barnmbr, 10, '0', STR_PAD_LEFT) }}</p>
+                        @if ($barnmbr == '0000000000')
+                            <div class="alert alert-danger py-2">
+                                No barcode available
                             </div>
-                        </div>
-                        @endforeach
+                        @else
+                            <div class="col-md-6 col-lg-4 col-xl-3 my-3">
+                                <div class="bg-grey px-4 py-2 rounded-4 pt-5 d-flex flex-column align-items-center">
+                                    <div class="my-barcode mt-4">{{ str_pad($barnmbr, 10, '0', STR_PAD_LEFT) }}</div>
+                                    <p>{{ str_pad($barnmbr, 10, '0', STR_PAD_LEFT) }}</p>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
                     </div>
                 </div>
             </div>
