@@ -31,17 +31,21 @@ class UserController extends Controller
             'city' => 'required',
             'state' => 'required',
             'zip' => 'required',
-            'gymImg' => 'required|file|mimes:jpeg,png,jpg,jfif'
+            'gymImg' => 'file|mimes:jpeg,png,jpg,jfif'
         ]);
-
+    
         $photo = $req->file('gymImg');
-        $photo_name = time() . "_" . $photo->getClientOriginalName();
-        $destinationpath = public_path('myimgs');
-        $photo->move($destinationpath, $photo_name);
-
+        if ($photo) {
+            $photo_name = time() . "_" . $photo->getClientOriginalName();
+            $destinationpath = public_path('myimgs');
+            $photo->move($destinationpath, $photo_name);
+        } else {
+            $photo_name = 'member.png';
+        }
+    
         $password = $req->password;
         $hashedPassword = bcrypt($password);
-
+    
         $user = User::create([
             'name' => $req->name,
             'email' => $req->email,
@@ -58,6 +62,8 @@ class UserController extends Controller
         session()->put('mid', $user->id);
         return redirect('/customersList')->with('success', "Gym added successfully");
     }
+    
+    
     public function saveGymBarcode(Request $req)
     {
         GymBarcode::create([

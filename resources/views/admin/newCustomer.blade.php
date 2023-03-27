@@ -32,7 +32,7 @@
                     </form>
                 </div>
                 <a href="#" class="d-block p-img">
-                    <img src="{{ asset('/img/dev-2.png') }}" class="rounded-circle w-100" alt="">
+                    <img src="{{ asset('/img/member.png') }}" class="rounded-circle w-100" alt="">
                 </a>
             </div>
         </div>
@@ -49,7 +49,7 @@
                 <form method="POST" action="/saveGym" enctype="multipart/form-data">
                     @csrf
                     <div class="position-relative position-rel">
-                        <img src="{{ asset('/img/dev-2.png') }}"
+                        <img src="{{ asset('/img/member.png') }}"
                             class="border border-3 rounded-circle w-100 h-100 mem-img2" id="blah" alt="">
                         <div class="position-img d-flex flex-column justify-content-end pb-4">
                             <label for="upload"><i class="fa-solid fa-camera text-white"></i></label>
