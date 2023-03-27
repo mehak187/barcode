@@ -129,9 +129,9 @@
         <div class="modal-dialog d-flex align-items-center h-100">
             <div class="modal-content">
                 <div class="bg-white shadow rounded-3 position-relative px-4 py-5">
-                    <div class="pb-a">
+                    <div class="pb-a" style="top:15px; right:20px; cursor:pointer">
                         <i class="fa-solid fa-xmark blue-bg rounded-circle p-2 text-white fs-6"
-                            data-bs-dismiss="modal"></i>
+                            data-bs-dismiss="modal" style="10px 12px !important"></i>
                     </div>
                     <div class="text-center">
                         <i class="fa-solid fa-question bg-warning rounded-circle blue-cl fs-5 p-3"></i>
@@ -143,6 +143,11 @@
                                 Add barcode form
                         ==================================== --}}
                         {{-- @foreach ($lists as $detail) --}}
+                        @if($orderBarcodesTot==0)
+                        <div class="alert alert-danger py-2">
+                            Customer does not request for any barcode
+                        </div>
+                        @else
                         <form action="/saveGymBarcode" method="POST">
                             @csrf
                             <input type="hidden" class="form-control" name="gym_id" value="{{ $gym_id }}"
@@ -150,7 +155,7 @@
                             <div>
                                 <label for="rangeInput" class="form-label blue-cl fs-5 fw-bold">No. of
                                     barcodes:</label>
-                                <input type="number" class="form-control" name="branches" placeholder="01"
+                                <input type="number" class="form-control" name="branches" placeholder="{{$orderBarcodesTot}}"
                                     value="" id="myRange" onchange="updateValue()" max="{{$orderBarcodesTot}}">
                             </div>
                             <div class="mt-3">
@@ -185,6 +190,7 @@
                                     class="btn btn-warning w-100 rounded-pill border text-white fs-5 mt-3 py-2 px-3 d-block">Add</button>
                             </div>
                         </form>
+                        @endif
                         {{-- @endforeach --}}
                     </div>
 
