@@ -4,7 +4,7 @@
 <head>
     @include('layouts.adminLinks')
     @include('layouts.userLinks')
-    <title>Customer List</title>
+    <title>Customers List</title>
     <style>
         #searcherror {
    display: none;

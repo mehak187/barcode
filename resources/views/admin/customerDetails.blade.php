@@ -4,7 +4,7 @@
 <head>
     @include('layouts.adminLinks')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" />
-    <title>customer details</title>
+    <title>Customer Details</title>
 </head>
 
 <body>
