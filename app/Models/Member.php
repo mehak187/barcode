@@ -21,4 +21,13 @@ class Member extends Model
        'barcode',
        'photo'
    ];
+   public function getPhotoAttribute($value)
+    {   
+        if($value==null){
+            return asset('myimgs/member/avatar.png');
+        }
+        else{
+            return asset('myimgs/member/'.$value);
+        }
+    }
 }

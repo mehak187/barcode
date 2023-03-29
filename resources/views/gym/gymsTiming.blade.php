@@ -264,6 +264,7 @@
                             @csrf
                             <div class="px-3 py-3 mt-4 d-flex flex-column justify-content-between h-100">
                                 <div>
+                                    <input type="hidden"  id="" value="{{$loginid}}" name="gym_id">
                                     <textarea class="form-control" rows="5" name="annoucement">
 @if (isset($ann))
 {{ $ann->annoucement }}

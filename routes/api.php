@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/getMember/{id}',[MemberController::class,'getMember']);
+Route::post('/changeProfile',[MemberController::class,'changeProfile']);
