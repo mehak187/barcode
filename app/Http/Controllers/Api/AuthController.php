@@ -33,7 +33,7 @@ class AuthController extends Controller
         } 
 
         if(Auth::guard('member')->attempt(['email' => $request->email, 'password' => $request->password])){ 
-            $user = Auth::user(); 
+            $user = Auth::guard('member')->user(); 
             $data['token'] =  $user->createToken('MyApp')->plainTextToken; 
             $data['id'] =  $user->id;
             $data['name'] =  $user->name;
