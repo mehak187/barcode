@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\MemberController;
+use App\Http\Controllers\Api\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/login',[AuthController::class,'login']);
 Route::get('/getMember/{id}',[MemberController::class,'getMember']);
 Route::post('/changeProfile',[MemberController::class,'changeProfile']);

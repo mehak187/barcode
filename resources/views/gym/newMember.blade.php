@@ -178,6 +178,19 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="mt-3">
+                                <label for="password" class="form-label blue-cl fw-bold px-1 fs-5">password</label>
+                                <input type="password" class="form-control shadow-none text-secondary" id="password"
+                                    placeholder="password" name="password" value="{{ old('password') }}">
+                                @error('password')
+                                    <span class="error text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="mt-3">
                                 <label for="m-bar" class="form-label blue-cl fw-bold px-1 fs-5">Bar Codes</label>
                                {{-- ----if no barcode----- --}}
                                 @if(isset($Gymrecord))

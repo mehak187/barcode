@@ -17,6 +17,7 @@ use App\Models\RequestBarcode;
 use App\Models\Schedule;
 use App\Models\mailInstruction;
 use App\Models\phoneInstruction;
+use Hash;
 
 
 class GymController extends Controller
@@ -84,6 +85,7 @@ class GymController extends Controller
         'barcode' => $req->barcode,
         'photo' =>  $req->photo,
         'gym_id' =>  $req->gym_id,
+        'password' =>  Hash::make($req->password),
        ]);
        return redirect('/newMember')->with('success',"Member added successfully");
     }

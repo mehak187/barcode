@@ -19,7 +19,8 @@ class Member extends Model
        'state',
        'zip',
        'barcode',
-       'photo'
+       'photo',
+       'password'
    ];
    public function getPhotoAttribute($value)
     {   
