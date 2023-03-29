@@ -209,14 +209,17 @@ class GymController extends Controller
         return view('gym.gymsTiming',$data);
     }
     public function ann(Request $req) {
-        $annoucement = annoucement::where('id', 1)->first(); // Replace 'id' and '1' with the appropriate values
+        $logid =  auth()->user()->id;
+        $annoucement = annoucement::where('gym_id',$logid)->exists(); // Replace 'id' and '1' with the appropriate values
         if ($annoucement) {
-            $annoucement->update([
+            annoucement::where('gym_id',$logid)->update([
                 'annoucement'=> $req->annoucement,
+                'gym_id'=> $req->gym_id
             ]);
         } else {
             annoucement::create([
                 'annoucement'=> $req->annoucement,
+                'gym_id'=> $req->gym_id
             ]);
         }
         return redirect('/gymsTiming');
