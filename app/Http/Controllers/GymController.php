@@ -70,6 +70,7 @@ class GymController extends Controller
             'state' => 'required',
             'zip' => 'required',
             'barcode' => 'required',
+            'password' => 'required|min:6',
             // 'gymImg' => 'required|file|mimes:jpeg,png,jpg,jfif'
         ]);
 
