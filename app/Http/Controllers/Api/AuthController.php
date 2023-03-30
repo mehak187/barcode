@@ -35,12 +35,16 @@ class AuthController extends Controller
         if(Auth::guard('member')->attempt(['email' => $request->email, 'password' => $request->password])){ 
             $user = Auth::guard('member')->user(); 
             $data['token'] =  $user->createToken('MyApp')->plainTextToken; 
+            $annoucement = Member::where('members.id', $user->id)
+            ->leftJoin('annoucements','members.gym_id','=','annoucements.gym_id')
+            ->select('annoucements.annoucement')->first();
             $data['id'] =  $user->id;
             $data['name'] =  $user->name;
             $data['photo'] =  $user->photo;
             $data['barcode'] =  $user->barcode;
             $data['address1'] =  $user->address1;
             $data['address2'] =  $user->address2;
+            $data['annoucement'] =  $annoucement->annoucement;
           
             return $this->sendJsonResponse('Member login successfully.',$data);
         } 

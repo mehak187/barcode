@@ -23,7 +23,6 @@ class MemberController extends Controller
             $data['details'] = Member::where('members.id', $id)
             ->leftJoin('annoucements','members.gym_id','=','annoucements.gym_id')
             ->select('address1','address2','barcode','annoucements.annoucement')->first();
-
             $data['schedule'] = Schedule::where('gym_id', $member_gym->gym_id)
                 ->first();
 
