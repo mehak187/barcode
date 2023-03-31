@@ -17,9 +17,9 @@
           </div>
           <div class="col-lg-6 mt-2 mt-xl-0 col-xl-5 d-sm-flex flex-wrap align-items-center justify-content-xl-between justify-content-center justify-content-lg-end">
               <div class="d-flex align-items-center justify-content-center me-3">
-                  <a href="member" class="text-light text-center d-block text-decoration-none bg-blue-g bs-opacity px-3 py-2 rounded-3 mt-sm-0 me-3 " >
+                  <a href="/member" class="text-light text-center d-block text-decoration-none bg-blue-g bs-opacity px-3 py-2 rounded-3 mt-sm-0 me-3 " >
                       <i class="fas fa-home text-light  me-2"></i>Members</a>
-                  <a href="gymsTiming" class="blue-txt text-center d-block text-decoration-none bg-yellow bs-opacity px-3 py-2 rounded-3 mt-sm-0" >
+                  <a href="/gymsTiming" class="blue-txt text-center d-block text-decoration-none bg-yellow bs-opacity px-3 py-2 rounded-3 mt-sm-0" >
                       <i class="fas fa-clock blue-txt me-2"></i>Schedule</a>
               </div>
               <!-- ------profile---- -->
@@ -50,7 +50,6 @@
           <h2 class="blue-cl fw-bold ps-3 m-0 fs-3">Update Member</h2>
         </div>
         <div class="row shadow bg-fd px-3 py-4 rounded-3">
-
            <div class="col-12 px-2">
               <form method="POST" action="/editmember" enctype="multipart/form-data">
                 @csrf
