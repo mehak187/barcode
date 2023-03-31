@@ -203,11 +203,10 @@ class GymController extends Controller
          $mphoto = auth()->user()->photo;
          $data['photo'] = $mphoto;
          // ---end of photo of login user---------
-         $data['ann'] = annoucement::first();
+         $data['ann'] = annoucement::where('gym_id',auth()->user()->id)->first();
 
          $data['loginid'] = auth()->user()->id;
-         $logid =  $data['loginid'];
-         $data['schedule'] = Schedule::where('schedules.gym_id', $logid)
+         $data['schedule'] = Schedule::where('schedules.gym_id', auth()->user()->id)
          ->first();
         return view('gym.gymsTiming',$data);
     }
