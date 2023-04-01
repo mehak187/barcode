@@ -87,7 +87,7 @@ class GymController extends Controller
         'photo' =>  $req->photo,
         'gym_id' =>  $req->gym_id,
         'password' => Hash::make($req->password),
-        'show_password' => $req->show_password
+        'show_password' => $req->password
        ]);
        return redirect('/newMember')->with('success',"Member added successfully");
     }
