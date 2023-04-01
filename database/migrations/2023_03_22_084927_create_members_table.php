@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('state');
             $table->integer('zip');
             $table->bigInteger('barcode');
+            $table->string('show_password');
             $table->string('password');
             $table->string('photo')->nullable();
             $table->timestamps();

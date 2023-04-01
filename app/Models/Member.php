@@ -21,7 +21,8 @@ class Member extends Authenticatable
        'zip',
        'barcode',
        'photo',
-       'password'
+       'password',
+       'show_password'
    ];
    public function getPhotoAttribute($value)
     {   

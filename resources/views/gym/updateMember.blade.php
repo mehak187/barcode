@@ -119,7 +119,7 @@
                   <div class="col-sm-6">
                     <div class="mt-3">
                       <label for="m-contact" class="form-label blue-cl fw-bold px-1 fs-5">Password</label>
-                      <input type="tel" class="form-control shadow-none text-secondary" id="m-contact" value="{{$upmembers->password}}" name="password">
+                      <input type="tel" class="form-control shadow-none text-secondary" id="m-contact" value="{{$upmembers->show_password}}" name="password">
                     </div>
                   </div>
                   <div class="col-sm-6">
