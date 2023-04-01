@@ -13,8 +13,11 @@
        <div class="bg-white p-3">
             <h1 class="text-dark">Hello!</h1>
             <p>{{ $requestMail['msg'] }}</p>
-            <p> Best regards,<br>
-                    <b>Admin</b>
+            <p>Your login credentials are:</p>
+            <p><b>Email Id: </b>{{ $requestMail['mailid'] }}</p>
+            <p><b>Password: </b>{{ $requestMail['pass'] }}</p>
+            {{-- <p> Best regards,<br>
+                    <b>Admin</b> --}}
             </p>
        </div>
    </div>

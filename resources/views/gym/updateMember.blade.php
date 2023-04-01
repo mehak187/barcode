@@ -117,6 +117,12 @@
                     </div>
                   </div>
                   <div class="col-sm-6">
+                    <div class="mt-3">
+                      <label for="m-contact" class="form-label blue-cl fw-bold px-1 fs-5">Password</label>
+                      <input type="tel" class="form-control shadow-none text-secondary" id="m-contact" value="{{$upmembers->password}}" name="password">
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
                     <div class="mt-5">
                       <button type="submit" class="bg-transparent border-0">
                       <a class="btn btn-warning text-decoration-none rounded-pill text-white px-4 py-2">Update Barcode</a>

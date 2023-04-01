@@ -12,7 +12,8 @@ use Modules\Settings\Entities\VerifyDocument;
 use App\Http\Traits\ApiResponseTrait;
 use App\Mail\PasswordResetMail;
 use Mail;
-use Illuminate\Support\Facades\Hash;
+use Hash;
+// use Illuminate\Support\Facades\Hash;
 
 use App\Models\PasswordReset;
 class AuthController extends Controller
@@ -31,8 +32,10 @@ class AuthController extends Controller
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors());       
         } 
-
-        if(Auth::guard('member')->attempt(['email' => $request->email, 'password' => $request->password])){ 
+        $password=Hash::make($request->password);
+        if(Auth::guard('member')->attempt(['email' => $request->email, 'password' => $request->password])){
+        
+            
             $user = Auth::guard('member')->user(); 
             $data['token'] =  $user->createToken('MyApp')->plainTextToken; 
             $annoucement = Member::where('members.id', $user->id)

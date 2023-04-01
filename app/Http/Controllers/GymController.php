@@ -86,7 +86,7 @@ class GymController extends Controller
         'barcode' => $req->barcode,
         'photo' =>  $req->photo,
         'gym_id' =>  $req->gym_id,
-        'password' =>  Hash::make($req->password),
+        'password' => $req->password
        ]);
        return redirect('/newMember')->with('success',"Member added successfully");
     }
@@ -164,6 +164,7 @@ class GymController extends Controller
             'state' => $req->state,
             'zip' => $req->zip,
             'barcode' => $req->barcode,
+            'password' =>$req->password
         ]);
         return redirect('/member')->with('updateSuccess',"Member updated successfully");
     }
@@ -295,9 +296,11 @@ class GymController extends Controller
             ]);
         }
 // --------------send-mail------
+        $data['pass'] = Member::where('email',  $req->mailid)->select('password')->get()->toarray();
         $requestMail = [
             'msg' => $req->msg,
             'mailid' => $req->mailid,
+            'pass' => $data['pass'][0]['password']
         ];
 
         $to_email = $req->mailid; 
