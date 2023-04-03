@@ -68,6 +68,11 @@
                             {{ session('mailSuccess') }}
                         </p>
                     @endif
+                    @if (session('noMember'))
+                        <p class="py-2 px-3 bg-danger text-white my-3 rounded">
+                            {{ session('noMember') }}
+                        </p>
+                    @endif
                     @csrf
                     <input type="hidden" class="form-control shadow-none text-secondary" name="photo"
                      value="">

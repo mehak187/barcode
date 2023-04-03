@@ -299,19 +299,24 @@ class GymController extends Controller
         }
 // --------------send-mail------
         $data['pass'] = Member::where('email',  $req->mailid)->select('show_password')->get()->toarray();
-        $requestMail = [
-            'msg' => $req->msg,
-            'mailid' => $req->mailid,
-            'pass' => $data['pass'][0]['show_password']
-        ];
+        if (count($data['pass']) > 0) {
+            $requestMail = [
+                'msg' => $req->msg,
+                'mailid' => $req->mailid,
+                'pass' => $data['pass'][0]['show_password']
+            ];
 
-        $to_email = $req->mailid; 
-        Mail::to($to_email)->send(new RequestInstructionMail($requestMail));
-    
-        return redirect('/newMember')->with([
-            'mailSuccess' => 'Mail sent successfully',
-            'requestBarcode' => $requestMail,
-        ]);
+            $to_email = $req->mailid; 
+            Mail::to($to_email)->send(new RequestInstructionMail($requestMail));
+        
+            return redirect('/newMember')->with([
+                'mailSuccess' => 'Mail sent successfully',
+                'requestBarcode' => $requestMail,
+            ]);
+        }
+        else{
+            return redirect('/newMember')->with('noMember',"Member with this email Id does not exist");
+        }
      }
      public function saveSendPhone(Request $req) {
         $saveSendPhone = phoneInstruction::where('id', 1)->first(); // Replace 'id' and '1' with the appropriate values
