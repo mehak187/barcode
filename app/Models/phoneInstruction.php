@@ -10,6 +10,7 @@ class phoneInstruction extends Model
     use HasFactory;
     protected $fillable = [
         'phoneid',
-        'msg'
+        'msg',
+        'gym_id',
     ];
 }

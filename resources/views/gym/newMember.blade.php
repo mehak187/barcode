@@ -228,7 +228,7 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                {{-- </form> --}}
             </div>
             {{-- --right-- --}}
             <div class="col-xl-4 col-lg-5 mt-5 mt-lg-0 px-2">
@@ -237,30 +237,31 @@
                         <h4 class="text-white py-2 px-3 fs-5">Send Email & SMS</h4>
                     </div>
                     <div class="p-3">
-                        <form action="/saveSendMail" method="POST">
-                            @csrf
+                        {{-- <form action="/savemember" method="POST">
+                            @csrf --}}
                             <label class="blue-cl fs-6 px-1 fw-bold">Email - How To Download The App</label>
+                            <input type="hidden" value="{{$logid}}" name="gym_id">
                             <input type="email" class="text-secondary shadow-none border border-2 form-control"
-                                placeholder="Member@Gmail.Com" name="mailid" required>
+                                placeholder="Member@Gmail.Com" name="mailid" id="mail2" readonly required>
                             <textarea class="text-secondary form-control shadow-none border border-2 px-3 py-2 mt-2 rounded-3"
                                 name="msg" rows="4" required>@if (isset($saveSendMail)){{ $saveSendMail->msg }}@endif</textarea>
-                            <div class="mt-3">
+                            {{-- <div class="mt-3">
                                 <button type="submit" class="btn pri-btn px-4 py-2 text-white">Send</button>
-                            </div>
-                        </form>
+                            </div> --}}
                     </div>
                     <div class="p-3">
                         <h5 class="blue-cl fs-6">SMS - How To Download The App</h5>
-                        <form action="/saveSendPhone" method="POST">
-                            @csrf
-                            <input type="number"
+                        {{-- <form action="/saveSendPhone" method="POST">
+                            @csrf --}}
+                            <input type="hidden" value="{{$logid}}" name="gym_id">
+                            <input type="tel"
                                 class="text-secondary form-control border border-2 px-3 mt-2 py-2 d-block rounded-3"
                                 placeholder="+1 849 893 002 801" name="phoneid" required>
                             <textarea class="text-secondary form-control shadow-none border border-2 px-3 py-2 mt-2 rounded-3" 
                             rows="4" name="msg" required >@if (isset($saveSendPhone)){{ $saveSendPhone->msg }}@endif</textarea>
-                            <div class="mt-3">
+                            {{-- <div class="mt-3">
                                 <button class="btn pri-btn px-4 py-2 text-white">Send</button>
-                            </div>
+                            </div> --}}
                         </form>
                     </div>
                 </div>
@@ -272,6 +273,15 @@
             color: rgba(128,128,128,0.7) !important
         }
     </style>
+    <script>
+        const email1 = document.getElementById('m-email');
+        const email2 = document.getElementById('mail2');
+
+        email1.addEventListener('input', function() {
+        email2.value = email1.value;
+        email2.readOnly = true;
+        });
+    </script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>

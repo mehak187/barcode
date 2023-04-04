@@ -10,6 +10,7 @@ class mailInstruction extends Model
     use HasFactory;
     protected $fillable = [
         'mailid',
-        'msg'
+        'msg',
+        'gym_id'
     ];
 }
