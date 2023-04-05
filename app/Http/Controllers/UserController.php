@@ -63,7 +63,6 @@ class UserController extends Controller
         return redirect('/customersList')->with('success', "Gym added successfully");
     }
     
-    
     public function saveGymBarcode(Request $req)
     {
         GymBarcode::create([

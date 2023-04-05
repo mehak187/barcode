@@ -27,6 +27,7 @@ class GymController extends Controller
         // ---start of photo of login user---------
         $mphoto = auth()->user()->photo;
         $data['photo'] = $mphoto;
+        $data['name'] = auth()->user()->name;
         // ---end of photo of login user---------
         $mid = auth()->user()->id;
         $rows = GymBarcode::where('gym_barcodes.gym_id', $mid)
@@ -160,6 +161,7 @@ class GymController extends Controller
         // ---start of photo of login user---------
         $mphoto = auth()->user()->photo;
         $data['photo'] = $mphoto;
+        $data['name'] = auth()->user()->name;
         // ---end of photo of login user---------
         $mid = auth()->user()->id;
         $data['mid'] = $mid;
@@ -196,6 +198,7 @@ class GymController extends Controller
         // ---start of photo of login user---------
         $mphoto = auth()->user()->photo;
         $data['photo'] = $mphoto;
+        $data['name'] = auth()->user()->name;
         // ---end of photo of login user---------
         $mid = auth()->user()->id;
         $rows = GymBarcode::where('gym_barcodes.gym_id', $mid)
@@ -266,6 +269,7 @@ class GymController extends Controller
         // ---start of photo of login user---------
         $mphoto = auth()->user()->photo;
         $data['photo'] = $mphoto;
+        $data['name'] = auth()->user()->name;
         // ---end of photo of login user---------
         $data['ann'] = annoucement::where('gym_id', auth()->user()->id)->first();
 

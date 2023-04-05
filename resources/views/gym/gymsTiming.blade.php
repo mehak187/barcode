@@ -18,7 +18,7 @@
                 <a href="/member" class="bar-logo me-4">
                     <img src="{{ asset('/img/logo.png') }}" alt="">
                 </a>
-                <h1 class="text-uppercase fs-3 fw-bold blue-txt mb-0">Jhon's boxing gym</h1>
+                <h1 class="text-uppercase fs-3 fw-bold blue-txt mb-0">{{$name}}'s gym</h1>
             </div>
             <div
                 class="col-lg-6 mt-2 mt-xl-0 col-xl-5 d-sm-flex flex-wrap align-items-center justify-content-xl-between justify-content-center justify-content-lg-end">
@@ -44,7 +44,6 @@
                     </div>
                     <a href="#" class="d-block p-img">
                         <img src="<?php echo asset('myimgs/' . $photo); ?>" class="rounded-circle w-100" alt="">
-
                     </a>
                 </div>
             </div>

@@ -37,7 +37,8 @@ class AuthController extends Controller
             $data['token'] =  $user->createToken('MyApp')->plainTextToken; 
             $annoucement = Member::where('members.id', $user->id)
             ->leftJoin('annoucements','members.gym_id','=','annoucements.gym_id')
-            ->select('annoucements.annoucement')->first();
+            ->leftJoin('users','users.id','=','annoucements.gym_id')
+            ->select('annoucements.annoucement','users.photo as gym_photo')->first();
             $data['id'] =  $user->id;
             $data['name'] =  $user->name;
             $data['photo'] =  $user->photo;
@@ -45,6 +46,7 @@ class AuthController extends Controller
             $data['address1'] =  $user->address1;
             $data['address2'] =  $user->address2;
             $data['annoucement'] =  $annoucement->annoucement;
+            $data['gym_photo'] =  asset('myimgs/'.$annoucement->gym_photo);
           
             return $this->sendJsonResponse('Member login successfully.',$data);
         } 
