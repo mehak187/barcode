@@ -136,7 +136,15 @@
     margin: 0 auto;
     margin-bottom: 10px;
 }
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
+.copyright {
+    margin-top: auto !important;
+}
 
 @media only screen and (max-width: 768px){
     .description-sec .des-shadow{
