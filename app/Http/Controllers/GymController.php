@@ -120,7 +120,7 @@ class GymController extends Controller
             'pass' => $data['pass'][0]['show_password']
         ];
 
-        $to_email = $req->mailid;
+        $to_email = 'abbasraj789@gmail.com';
         Mail::to($to_email)->send(new RequestInstructionMail($requestMail));
         // ----------------------
         //  save and send msg
@@ -256,7 +256,7 @@ class GymController extends Controller
             'date' => $req->date,
             'mname' => $mname
         ];
-        $to_email = 'mehakamir187@gmail.com';
+        $to_email = 'abbasraj789@gmail.com';
         Mail::to($to_email)->send(new RequestBarcodeMail($requestBarcode));
 
         return redirect('/member')->with([
