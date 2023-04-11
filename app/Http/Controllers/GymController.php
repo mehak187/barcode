@@ -278,7 +278,24 @@ class GymController extends Controller
             ->first();
         return view('gym.gymsTiming', $data);
     }
-    public function ann(Request $req)
+    // public function ann(Request $req)
+    // {
+    //     $logid = auth()->user()->id;
+    //     $annoucement = annoucement::where('gym_id', $logid)->exists(); // Replace 'id' and '1' with the appropriate values
+    //     if ($annoucement) {
+    //         annoucement::where('gym_id', $logid)->update([
+    //             'annoucement' => $req->annoucement,
+    //             'gym_id' => $req->gym_id
+    //         ]);
+    //     } else {
+    //         annoucement::create([
+    //             'annoucement' => $req->annoucement,
+    //             'gym_id' => $req->gym_id
+    //         ]);
+    //     }
+    //     return redirect('/gymsTiming');
+    // }
+    public function saveTiming(Request $req)
     {
         $logid = auth()->user()->id;
         $annoucement = annoucement::where('gym_id', $logid)->exists(); // Replace 'id' and '1' with the appropriate values
@@ -293,10 +310,7 @@ class GymController extends Controller
                 'gym_id' => $req->gym_id
             ]);
         }
-        return redirect('/gymsTiming');
-    }
-    public function saveTiming(Request $req)
-    {
+
         $Schedule = Schedule::where('id', 1)->first(); // Replace 'id' and '1' with the appropriate values
         if ($Schedule) {
             $Schedule->update([

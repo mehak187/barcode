@@ -94,6 +94,7 @@
                                                 </div>
                                                 <div>
                                                     <h6 class="mb-0 fs-6 searchable" id="gym_name">{{ $gym['name'] }}</h6>
+                                                    <p class="mb-0">{{ $gym['fname'] }} {{ $gym['lname'] }}</p>
                                                     <p class="mb-0">{{ $gym['email'] }}</p>
                                                 </div>
                                             </div>

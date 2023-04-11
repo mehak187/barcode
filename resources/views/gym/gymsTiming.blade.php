@@ -250,7 +250,6 @@
                     <div class="text-end">
                         <button type="submit" class="btn btn-warning px-5 rounded-pill text-white mt-3">Save</button>
                     </div>
-                </form>
             </div>
             {{-- ====================================
                           Announcements
@@ -259,10 +258,10 @@
                 <div class="send-bor2 shadow">
                     <div class="">
                         <h4 class="text-white py-3 px-3 blue-bg send-bor fs-5 text-uppercase">Announcements</h4>
-                        <form action="/ann" method="POST">
-                            @csrf
-                            <div class="px-3 py-3 mt-4 d-flex flex-column justify-content-between h-100">
-                                <div>
+                        {{-- <form action="/ann" method="POST">
+                            @csrf --}}
+                            <div class="px-3 py-3 mt-3 d-flex flex-column justify-content-between h-100">
+                                <div class="mb-3">
                                     <input type="hidden"  id="" value="{{$loginid}}" name="gym_id">
                                     <textarea class="form-control" rows="5" name="annoucement">
 @if (isset($ann))
@@ -270,10 +269,10 @@
 @endif
 </textarea>
                                 </div>
-                                <div>
+                                {{-- <div>
                                     <input type="submit" value="Save"
                                         class="btn pri-btn border rounded-pill text-white mt-5 px-5">
-                                </div>
+                                </div> --}}
                             </div>
                         </form>
                     </div>

@@ -23,6 +23,8 @@ class UserController extends Controller
     {
         $req->validate([
             'name' => 'required|string|max:255',
+            'fname' => 'required|string',
+            'lname' => 'required|string',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8',
             'contact' => 'required',
@@ -48,6 +50,8 @@ class UserController extends Controller
     
         $user = User::create([
             'name' => $req->name,
+            'fname' => $req->fname,
+            'lname' => $req->lname,
             'email' => $req->email,
             'contact' => $req->contact,
             'address1' => $req->address1,

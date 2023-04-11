@@ -194,20 +194,14 @@
                                 <label for="num" class="form-label blue-cl fs-5 fw-bold">Number</label>
                                 <select name="barcodes" id="" class="form-control" name=""
                                     id="num">'
-                                    <option value="10">10</option>
-                                    <option value="20">20</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
                                     <option value="250">250</option>
                                     <option value="500">500</option>
                                     <option value="1000">1000</option>
                                     <option value="1500">1500</option>
+                                    <option value="2000">2000</option>
                                     <option value="2500">2500</option>
                                     <option value="5000">5000</option>
                                     <option value="10000">10,000</option>
-                                    <option value="20000">20,000</option>
-                                    <option value="50000">50,000</option>
-                                    <option value="100000">100,000</option>
                                 </select>
                             </div>
                             <div>
