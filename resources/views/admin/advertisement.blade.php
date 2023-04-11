@@ -47,7 +47,7 @@
                     @csrf
                     <div class="position-relative position-rel">
                         <img src="{{ asset('/img/Group 42046.png') }}"
-                            class="border border-3 rounded-circle w-100 h-100 mem-img2" id="blah" alt="">
+                            class="border border-3 w-100 h-100 mem-img2" id="blah" alt="">
                         <div class="position-img d-flex flex-column justify-content-end pb-4">
                             <label for="upload"><i class="fa-solid fa-camera text-white"></i></label>
                             <input type="file" id="upload" class="d-none" name="advImg"
