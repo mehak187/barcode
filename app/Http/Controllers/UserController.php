@@ -215,6 +215,9 @@ class UserController extends Controller
         return view('newPassword');
     }
 
-
+    public function advertisement()
+    {
+        return view('admin.advertisement');
+    }
 
 }

@@ -60,7 +60,8 @@
                         <div class="row justify-content-center mt-5">
                             <div class="col-md-8 d-sm-flex justify-content-center">
                                 <a href="customersList" class="text-light text-center d-block text-decoration-none bg-blue-g bs-opacity px-3 py-2 rounded-3 me-sm-4">View Customer List</a>
-                                <a href="newCustomer" class="text-light text-center d-block text-decoration-none bg-blue-g bs-opacity px-3 py-2 rounded-3 mt-3 mt-sm-0">Add new customer</a>
+                                <a href="newCustomer" class="text-light text-center d-block text-decoration-none bg-blue-g bs-opacity px-3 py-2 rounded-3 mt-3 mt-sm-0 me-sm-4">Add new customer</a>
+                                <a href="advertisement" class="text-light text-center d-block text-decoration-none bg-blue-g bs-opacity px-3 py-2 rounded-3 mt-3 mt-sm-0">Advertisement</a>
                             </div>
                         </div>
                     </div>
