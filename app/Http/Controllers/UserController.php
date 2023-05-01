@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Member;
 use App\Models\GymBarcode;
+use App\Models\Ad;
 use App\Models\RequestBarcode;
 
 
@@ -217,7 +218,25 @@ class UserController extends Controller
 
     public function advertisement()
     {
-        return view('admin.advertisement');
+        $data['ads']=Ad::get()->toArray();
+        return view('admin.advertisement',$data);
+    }
+    public function saveAd(Request $request){
+        
+        $photo = $request->file('image');
+        if ($photo) {
+            $photo_name = time() . "_" . $photo->getClientOriginalName();
+            $destinationpath = public_path('myimgs');
+            $photo->move($destinationpath, $photo_name);
+        } else {
+            $photo_name = 'member.png';
+        }
+        Ad::create([
+            'title'=>$request->get('title'),
+            'image'=>$photo_name,
+        ]);
+
+        return redirect()->back()->with('success',' Ad Published');
     }
 
 }
