@@ -19,6 +19,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
          'name',
+         'fname',
+         'lname',
         'email',
         'contact',
         'address1',
@@ -31,7 +33,6 @@ class User extends Authenticatable
         'is_email_verified',
         'photo'
     ];
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -50,4 +51,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+   
 }

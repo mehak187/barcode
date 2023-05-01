@@ -5,5 +5,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"/>
+<link rel="icon" type="image/x-icon" href="{{ asset('/img/logo.png') }}">
 <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('/css/main.css') }}">

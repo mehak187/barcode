@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('mailid');
             $table->string('msg');
+            $table->int('gym_id');
             $table->timestamps();
         });
     }

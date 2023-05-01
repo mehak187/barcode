@@ -79,9 +79,20 @@
                         </div>
                         <div class="col-lg-4 col-md-6">
                             <div class="mt-3">
-                                <input type="email" class="form-control shadow-none text-secondary" name="email"
-                                    value="" id="m-email" placeholder="Email">
-                                @error('email')
+                                <input type="text" class="form-control shadow-none text-secondary" name="fname"
+                                    value="{{ old('fname') }}" id="m-name" placeholder="First Name">
+                                @error('fname')
+                                    <span class="error text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="mt-3">
+                                <input type="text" class="form-control shadow-none text-secondary" name="lname"
+                                    value="{{ old('lname') }}" id="m-name" placeholder="Last Name">
+                                @error('lname')
                                     <span class="error text-danger">
                                         {{ $message }}
                                     </span>
@@ -91,7 +102,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="mt-3">
                                 <input type="tel" class="form-control shadow-none text-secondary" name="contact"
-                                    value="{{ old('contact') }}" id="m-email" placeholder="Contact">
+                                    value="{{ old('contact') }}" id="m-email" placeholder="Phone number">
                                 @error('contact')
                                     <span class="error text-danger">
                                         {{ $message }}
@@ -99,9 +110,35 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="mt-3">
+                                <input type="email" class="form-control shadow-none text-secondary" name="email"
+                                    value="" id="m-email" placeholder="Email">
+                                @error('email')
+                                    <span class="error text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                       
+                        <div class="col-lg-4 col-md-6">
+                            <div class="mt-3">
+                                <input type="password" class="form-control shadow-none text-secondary"
+                                    name="password" id="m-contact" placeholder="Password">
+                                @error('password')
+                                    <span class="error text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
+                 
+                   
                     <div class="row mt-5">
                         <h2 class="blue-cl fw-bold fs-2">Location</h2>
+                    
                         <div class="col-lg-4 col-md-6">
                             <div class="mt-3">
                                 <label for="address-1" class="form-label blue-cl fw-bold px-1 fs-5">Address Line
@@ -165,17 +202,6 @@
                         </div>
                     </div>
                     <div class="row mt-5">
-                        <div class="col-lg-4 col-md-6">
-                            <div class="mt-3">
-                                <input type="password" class="form-control shadow-none text-secondary"
-                                    name="password" id="m-contact" placeholder="Password">
-                                @error('password')
-                                    <span class="error text-danger">
-                                        {{ $message }}
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-lg-4 col-md-6">
                                 <div class="mt-3">
@@ -189,6 +215,9 @@
             </div>
         </div>
     </div>
+    <section class="copyright pt-3 mb-2 mx-3">
+        <p class="text-center bg-warning rounded-3 py-2 mb-0 blue-txt small">Powered and generated by <b>KeyTag</b>. Maintained and developed by <b> Fabtechsol</b></p>
+    </section>
 </body>
 {{-- ------------------------- --}}
 <script>

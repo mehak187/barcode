@@ -8,3 +8,4 @@
 <script src="https://kit.fontawesome.com/088d3f36f9.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('/css/main.css') }}">
+<link rel="icon" type="image/x-icon" href="{{ asset('/img/logo.png') }}">

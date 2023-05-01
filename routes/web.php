@@ -23,6 +23,7 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/addedByAdmin/{id}', [UserController::class, 'addedByAdmin']);
     Route::get('/usedBarcodes/{id}', [UserController::class, 'usedBarcodes']);
     Route::get('/remBarcodes/{id}', [UserController::class, 'remBarcodes']);
+    Route::get('/advertisement', [UserController::class, 'advertisement']);
 });
 
 // -----------gym-----------
