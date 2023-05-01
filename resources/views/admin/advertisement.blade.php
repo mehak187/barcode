@@ -43,15 +43,15 @@
             <div class="col px-2">
 
                 {{-- ----------form------ --}}
-                <form method="" action="/dashboard" enctype="multipart/form-data">
+                <form method="post" action="/saveAd" enctype="multipart/form-data">
                     @csrf
                     <div class="position-relative position-rel">
                         <img src="{{ asset('/img/Group 42046.png') }}"
                             class="border border-3 w-100 h-100 mem-img2" id="blah" alt="">
                         <div class="position-img d-flex flex-column justify-content-end pb-4">
                             <label for="upload"><i class="fa-solid fa-camera text-white"></i></label>
-                            <input type="file" id="upload" class="d-none" name="advImg"
-                                onchange="readURL(this);">
+                            <input type="file" id="upload" class="d-none" name="image"
+                                onchange="readURL(this);" required="">
                         </div>
                     </div>
                     {{-- @error('gymImg')
@@ -63,34 +63,75 @@
                         <input type="hidden" class="form-control shadow-none text-secondary" name="role"
                             placeholder="role" value="1">
 
-                        <div class="col-lg-4 col-md-6">
+                            <div class="col-lg-4 col-md-6">
                             <div class="mt-3">
-                                <input type="text" class="form-control shadow-none text-secondary" name="name"
-                                    value="{{ old('name') }}" id="m-name" placeholder="Advertisement">
-                                {{-- @error('name')
-                                    <span class="error text-danger">
-                                        {{ $message }}
-                                    </span>
-                                @enderror --}}
+                                <input type="text" required="" class="form-control shadow-none text-secondary" name="title"
+                                    value="{{ old('title') }}" id="m-name" placeholder="Advertisement">
+                                    {{-- @error('name')
+                                        <span class="error text-danger">
+                                            {{ $message }}
+                                        </span>
+                                    @enderror --}}
                             </div>
                         </div>
                     </div>
                  
                    
-                    <div class="row mt-2">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6">
-                                <div class="mt-3">
-                                    <button type="submit" name="submit"
-                                        class="btn btn-warning border px-5 py-2 rounded-pill text-white">Save</button>
+                        <div class="row mt-2">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="mt-3">
+                                        <button type="submit" name="submit"
+                                            class="btn btn-warning border px-5 py-2 rounded-pill text-white">Save</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </form>
             </div>
         </div>
     </div>
+    <section class="mt-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="row bg-white shadow px-4 px-xxl-5 py-3 mt-4 rounded-4 det-box">
+                        <div class="col-10 col-sm-11" id="customer-list">
+                                <!-- --all customers---- -->
+                            @if(count($ads)>0) 
+                                <div class="customer-all-main">
+                                    <h6 class="fw-bold fs-4 text-uppercase blue-txt">All Ads</h6>
+                                    @foreach ($ads as $ad)
+                                        <div class="bg-grey row px-3 align-items-center py-3 rounded-3 my-3 customer-all service-box">
+                                            <div class="col-sm-11">
+                                                <div class="row ">
+                                                    <div class="col-md-6 my-2 my-lg-0 col-xl-4 d-flex align-items-center">
+                                                        <div class="me-2">
+                                                            <img src="<?php echo asset('myimgs/' . $ad['image']); ?>" style="height:150px; width:150px; max-width:100%; border-radius:10px"
+                                                                alt="">
+                                                        </div>
+                                                        <div>
+                                                            <h6 class="mb-0 fs-6 searchable">{{ $ad['title'] }}</h6>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-1 d-flex justify-content-end align-items-center">
+                                                <a href="/deleteAds/{{$ad['id']}}"
+                                                    class="bg-blue-g bs-opacity rounded-circle px-2 py-1 d-inline-block">
+                                                <i class="fas fa-trash text-light fs-5"></i></a>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section class="copyright pt-3 mb-2 mx-3">
         <p class="text-center bg-warning rounded-3 py-2 mb-0 blue-txt small">Powered and generated by <b>KeyTag</b>. Maintained and developed by <b> Fabtechsol</b></p>
     </section>
