@@ -4,7 +4,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\GymController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\SmsController;
-
+Route::get('/clearCache', function () {
+    Artisan::call('cache:clear');
+});
+Route::get('/clearViewCache', function () {
+    Artisan::call('view:clear');
+});
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [UserController::class, 'login']);

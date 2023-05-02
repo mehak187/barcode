@@ -55,7 +55,7 @@
                 @csrf
                 <div class="row">
                 <div class="col-sm-6">
-                  <input type="hidden" class="form-control shadow-none text-secondary" id="m-name" value="{{$upmembers->id}}" name="id">
+                  <input type="hidden" class="form-control shadow-none text-secondary" id="m-id" value="{{$upmembers->id}}" name="id">
                   <div class="mt-3">
                     <label for="m-name" class="form-label blue-cl fw-bold px-1 fs-5">Member Name:</label>
                     <input type="text" class="form-control shadow-none text-secondary" id="m-name" value="{{$upmembers->name}}" name="name">
@@ -147,6 +147,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+  var member=<?php echo json_encode($upmembers->barcode)?>;
           $('#barcode').change(function(event) {
             event.preventDefault();
             var id=$(this).val();
@@ -160,9 +161,14 @@
                     url: '/checkBarcode',
                     data: {id:id},
                     success: function(data) {
-                        if(data.status=="assigned"){
+                       if(data.status=="assigned"){
+                          if(data.id==member){
+
+                          }
+                          else{
                             swal('This Barcode has been assigned');
                             $('#barcode').val("");
+                          }   
                         }
                         else if(data.status=="notavailable"){
                             swal('This Barcode is not available');
@@ -189,8 +195,13 @@
                     data: {id:id},
                     success: function(data) {
                         if(data.status=="assigned"){
-                            swal('This Barcode has been assigned');
-                            $('#barcode').val("");
+                          if(data.id==member){
+                            $("#form").submit();
+                            }
+                            else{
+                              swal('This Barcode has been assigned');
+                              $('#barcode').val("");
+                            }   
                         }
                         else if(data.status=="notavailable"){
                             swal('This Barcode is not available');
