@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Member;
 use App\Models\annoucement;
 use App\Models\Schedule;
+use App\Models\Ad;
 use App\Http\Traits\ApiResponseTrait;
 use File;
 use Validator;
@@ -74,4 +75,13 @@ class MemberController extends Controller
             return $this->sendError('Error.', $e->getMessage());
         }
     } 
+    public function ads(){
+        try {
+            $data['ads']=Ad::get();
+            $success = "All ads";
+            return $this->sendResponse($success, $data);
+        } catch (\Exception $e) {
+            return $this->sendError('Error.', $e->getMessage());
+        }
+    }
 }
