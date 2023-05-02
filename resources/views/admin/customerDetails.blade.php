@@ -156,7 +156,7 @@
                                 <label for="rangeInput" class="form-label blue-cl fs-5 fw-bold">No. of
                                     barcodes:</label>
                                 <input type="number" class="form-control" name="branches" placeholder="{{$orderBarcodesTot}}"
-                                    value="" id="myRange" onchange="updateValue()" max="{{$orderBarcodesTot}}">
+                                    value="" id="myRange" max="{{$orderBarcodesTot}}">
                             </div>
                             <div class="mt-3">
                                 <?php $from_value = $maxs + 1; ?>
@@ -164,7 +164,7 @@
                                 <label for="num" class="form-label blue-cl fs-5 fw-bold">From:</label>
                                 <input type="number" class="form-control" name="from" id="from"
                                     value="{{ $from_value }}" min="{{ $from_value }}" max="9999999999"
-                                    step="1" maxlength="10" readonly>
+                                    step="1" maxlength="10">
                             </div>
                             <div class="mt-3">
                                 <label for="num3" class="form-label blue-cl fs-5 fw-bold">To:</label>
@@ -178,6 +178,12 @@
                                     var output = document.getElementById("output");
                                 
                                     myRange.addEventListener("change", function() {
+                                        var rangeValue = parseFloat(myRange.value);
+                                        var fromValue = parseFloat(from.value);
+                                        var result = Math.round(rangeValue + fromValue -1);
+                                        output.value = result.toString().padStart(10, "0");
+                                    });
+                                    from.addEventListener("change", function() {
                                         var rangeValue = parseFloat(myRange.value);
                                         var fromValue = parseFloat(from.value);
                                         var result = Math.round(rangeValue + fromValue -1);
