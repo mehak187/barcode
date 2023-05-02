@@ -42,6 +42,11 @@
                         {{ session('success') }}
                     </p>
                 @endif
+                @if (session('error'))
+                <p class="py-2 px-3 bg-danger text-center text-white my-3 rounded">
+                {{ session('error') ??"" }}
+                    </p>
+                @endif
                 <!-- -----secondary-heading------ -->
                 <div class="row">
                     <div class="d-flex flex-wrap justify-content-between">
@@ -163,7 +168,7 @@
 
                                 <label for="num" class="form-label blue-cl fs-5 fw-bold">From:</label>
                                 <input type="number" class="form-control" name="from" id="from"
-                                    value="{{ $from_value }}" min="{{ $from_value }}" max="9999999999"
+                                    value="{{ $from_value }}" max="9999999999"
                                     step="1" maxlength="10">
                             </div>
                             <div class="mt-3">

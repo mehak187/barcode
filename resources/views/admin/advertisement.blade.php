@@ -91,47 +91,47 @@
             </div>
         </div>
     </div>
-    <section class="mt-4">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="row bg-white shadow px-4 px-xxl-5 py-3 mt-4 rounded-4 det-box">
-                        <div class="col-10 col-sm-11" id="customer-list">
-                                <!-- --all customers---- -->
-                            @if(count($ads)>0) 
-                                <div class="customer-all-main">
-                                    <h6 class="fw-bold fs-4 text-uppercase blue-txt">All Ads</h6>
-                                    @foreach ($ads as $ad)
-                                        <div class="bg-grey row px-3 align-items-center py-3 rounded-3 my-3 customer-all service-box">
-                                            <div class="col-sm-11">
-                                                <div class="row ">
-                                                    <div class="col-md-6 my-2 my-lg-0 col-xl-4 d-flex align-items-center">
-                                                        <div class="me-2">
-                                                            <img src="<?php echo asset('myimgs/' . $ad['image']); ?>" style="height:150px; width:150px; max-width:100%; border-radius:10px"
-                                                                alt="">
-                                                        </div>
-                                                        <div>
-                                                            <h6 class="mb-0 fs-6 searchable">{{ $ad['title'] }}</h6>
+    @if(count($ads)>0) 
+        <section class="mt-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12">
+                        <div class="row bg-white shadow px-4 px-xxl-5 py-3 mt-4 rounded-4 det-box">
+                            <div class="col-12" id="customer-list">
+                                    <!-- --all customers---- -->
+                                    <div class="customer-all-main">
+                                        <h6 class="fw-bold fs-4 text-uppercase blue-txt">All Ads</h6>
+                                        @foreach ($ads as $ad)
+                                            <div class="bg-grey row px-3 align-items-center py-3 rounded-3 my-3 customer-all service-box">
+                                                <div class="col-sm-11">
+                                                    <div class="row ">
+                                                        <div class="col-md-6 my-2 my-lg-0 col-xl-4 d-flex align-items-center">
+                                                            <div class="me-2">
+                                                                <img src="{{$ad['image']}}" style="height:150px; width:150px; max-width:100%; border-radius:10px"
+                                                                    alt="">
+                                                            </div>
+                                                            <div>
+                                                                <h6 class="mb-0 fs-6 searchable">{{ $ad['title'] }}</h6>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-sm-1 d-flex justify-content-end align-items-center">
+                                                    <a href="/deleteAds/{{$ad['id']}}"
+                                                        class="bg-blue-g bs-opacity rounded-circle px-2 py-1 d-inline-block">
+                                                    <i class="fas fa-trash text-light fs-5"></i></a>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-1 d-flex justify-content-end align-items-center">
-                                                <a href="/deleteAds/{{$ad['id']}}"
-                                                    class="bg-blue-g bs-opacity rounded-circle px-2 py-1 d-inline-block">
-                                                <i class="fas fa-trash text-light fs-5"></i></a>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            @endif
+                                        @endforeach
+                                    </div>
+                            </div>
+                        
                         </div>
-                    
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
     <section class="copyright pt-3 mb-2 mx-3">
         <p class="text-center bg-warning rounded-3 py-2 mb-0 blue-txt small">Powered and generated by <b>KeyTag</b>. Maintained and developed by <b> Fabtechsol</b></p>
     </section>

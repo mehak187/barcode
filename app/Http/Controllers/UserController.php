@@ -9,6 +9,7 @@ use App\Models\Member;
 use App\Models\GymBarcode;
 use App\Models\Ad;
 use App\Models\RequestBarcode;
+use File;
 
 
 class UserController extends Controller
@@ -70,13 +71,22 @@ class UserController extends Controller
     
     public function saveGymBarcode(Request $req)
     {
-        GymBarcode::create([
-            'gym_id' => $req->gym_id,
-            'branches' => $req->branches,
-            'from' => $req->from,
-            'to' => $req->to
-        ]);
-        return redirect('/customerDetails/' . $req->gym_id)->with('success', "Barcode added successfully");
+        $check=GymBarcode::where(function ($query) use ($req) {
+            $query->whereBetween('from', [$req->from, $req->to])
+                  ->orWhereBetween('to', [$req->from, $req->to]);
+        })->get()->toArray();
+        if(count($check)>0){
+            return redirect('/customerDetails/' . $req->gym_id)->with('error', "Barcode already assigned");    
+        }
+        else{
+            GymBarcode::create([
+                'gym_id' => $req->gym_id,
+                'branches' => $req->branches,
+                'from' => $req->from,
+                'to' => $req->to
+            ]);
+            return redirect('/customerDetails/' . $req->gym_id)->with('success', "Barcode added successfully");    
+        }
     }
     public function dashboard()
     {
@@ -239,4 +249,13 @@ class UserController extends Controller
         return redirect()->back()->with('success',' Ad Published');
     }
 
+    public function deleteAds($id){
+        $ad=Ad::find($id);
+        if(file_exists(public_path('/myimgs/'.$ad->img))){
+            File::delete(public_path('/myimgs/'.$ad->img));
+        }
+        Ad::where('id', $id)->delete();
+        return redirect()->back()->with('success',' Ad Deleted');
+    }
+        
 }
