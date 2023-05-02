@@ -204,7 +204,8 @@
                                     </span>
                                     {{-- <input type="text" name="barcode" value="0"> --}}
                                 @else
-                                    <select name="barcode" id="" class="form-control shadow-none text-secondary">
+                                    <select name="barcode" id="barcode" class="form-control shadow-none text-secondary">
+                                        <option value="">Select</option>
                                     @foreach ($results as $barnmbr)
                                         <option  value="{{ str_pad($barnmbr, 10, '0', STR_PAD_LEFT) }}">{{ str_pad($barnmbr, 10, '0', STR_PAD_LEFT) }}</option>
                                     @endforeach
@@ -220,8 +221,7 @@
                         <div class="col-sm-6">
                             <div class="mt-5">
                               <button type="submit" class="border-0 bg-transparent">
-                                <a
-                                        class="btn btn-warning text-decoration-none rounded-pill text-white px-4 py-2">Save
+                                <a class="btn btn-warning text-decoration-none rounded-pill text-white px-4 py-2">Save
                                         & Assign Barcode</a>
                               </button>
                                     
@@ -276,14 +276,32 @@
             color: rgba(128,128,128,0.7) !important
         }
     </style>
-    <script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
         const email1 = document.getElementById('m-email');
         const email2 = document.getElementById('mail2');
-
         email1.addEventListener('input', function() {
         email2.value = email1.value;
         email2.readOnly = true;
         });
+        $('#barcode').change(function(event) {
+            event.preventDefault();
+            var id=$(this).val();
+            $.ajax({
+                type: 'get',
+                url: '/checkBarcode',
+                data: {id:id},
+                success: function(data) {
+                    if(data.status=="assigned"){
+                        alert('This Barcode has been assigned');
+                        $('#barcode').val("");
+                    }
+                    else{
+
+                    }
+                }
+            });
+            });
     </script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

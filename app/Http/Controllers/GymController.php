@@ -31,7 +31,7 @@ class GymController extends Controller
         // ---end of photo of login user---------
         $mid = auth()->user()->id;
         $rows = GymBarcode::where('gym_barcodes.gym_id', $mid)
-            ->select('from', 'to')->get();
+            ->select('from', 'to')->orderBy('from','asc')->get();
 
         $result = [];
         foreach ($rows as $row) {
@@ -40,13 +40,14 @@ class GymController extends Controller
             }
         }
         // ----------select barcode column from member and then use array differ to check that member barcode value should not be in $result
-        $members = Member::pluck('barcode')->all();
-        // convert all values of member into 10 digit
-        foreach ($members as $key => $barcode) {
-            $members[$key] = str_pad($barcode, 10, '0', STR_PAD_LEFT); // convert to 10 digits
-        }
+        // $members = Member::pluck('barcode')->all();
+        // // convert all values of member into 10 digit
+        // foreach ($members as $key => $barcode) {
+        //     $members[$key] = str_pad($barcode, 10, '0', STR_PAD_LEFT); // convert to 10 digits
+        // }
 
-        $resultnew = array_diff($result, $members);
+        // $resultnew = array_diff($result, $members);
+        $resultnew = array_diff($result);
         $data['results'] = $resultnew;
 
         $data['gym_id'] = $mid;
@@ -157,7 +158,20 @@ class GymController extends Controller
             'requestBarcode' => $requestMail,
         ]);
     }
-    public function member(){
+    public function checkBarcode(Request $request){
+        $id=ltrim(str_pad($request->id, 10, "0", STR_PAD_LEFT), '0');
+        $check=Member::where('barcode',$id)->where('gym_id',auth()->user()->id)
+        ->get()->count();
+        if($check>0){
+            return response()->json(['status' => 'assigned']);
+        }
+        else {
+            return response()->json(['status' => 'available']);
+        }
+
+
+    }
+        public function member(){
         // ---start of photo of login user---------
         $mphoto = auth()->user()->photo;
         $data['photo'] = $mphoto;
@@ -167,7 +181,7 @@ class GymController extends Controller
         $data['mid'] = $mid;
 
         $data['members'] = Member::where('members.gym_id', $mid)
-            ->orderBy('id', 'desc')->get();
+            ->orderBy('id', 'asc')->get();
         if ($data['members']->isEmpty()) {
             $data['error_message'] = "No records found.";
         }
@@ -202,7 +216,7 @@ class GymController extends Controller
         // ---end of photo of login user---------
         $mid = auth()->user()->id;
         $rows = GymBarcode::where('gym_barcodes.gym_id', $mid)
-            ->select('from', 'to')->get();
+            ->select('from', 'to')->orderBy('from','asc')->get();
         $result = [];
         foreach ($rows as $row) {
             for ($i = $row->from; $i <= $row->to; $i++) {
@@ -210,12 +224,13 @@ class GymController extends Controller
             }
         }
         // ----------select barcode column from member and then use array differ to check that member barcode value should not be in $result
-        $members = Member::pluck('barcode')->all();
-        // convert all values of member into 10 digit
-        foreach ($members as $key => $barcode) {
-            $members[$key] = str_pad($barcode, 10, '0', STR_PAD_LEFT); // convert to 10 digits
-        }
-        $resultnew = array_diff($result, $members);
+        // $members = Member::pluck('barcode')->all();
+        // // convert all values of member into 10 digit
+        // foreach ($members as $key => $barcode) {
+        //     $members[$key] = str_pad($barcode, 10, '0', STR_PAD_LEFT); // convert to 10 digits
+        // }
+        // $resultnew = array_diff($result, $members);
+        $resultnew = array_diff($result);
         // print_r($resultnew);die();
         $data['results'] = $resultnew;
 

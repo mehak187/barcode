@@ -119,7 +119,7 @@
                                         <p class="text-secondary fs-6">{{ $member['contact'] }}</p>
                                     </div>
                                     <div class="ms-3 d-flex flex-column align-items-center">
-                                        <div class="my-barcode mt-5 mt-xl-0">{{ str_pad($member['barcode'], 10, '0', STR_PAD_LEFT) }}</div>
+                                        <div class="my-barcode mt-5 mt-xl-0">{{$mid}}G{{ str_pad($member['barcode'], 10, '0', STR_PAD_LEFT) }}</div>
                                         <p class="text-center mb-0">{{ str_pad($member['barcode'], 10, '0', STR_PAD_LEFT) }}</p>
                                     </div>
                                 </div>
@@ -163,7 +163,7 @@
     <style>
         .my-barcode {
             font-family: 'Libre Barcode 39';
-            font-size: 52px;
+            font-size: 46px;
             transform: scaleY(2);
             letter-spacing: -2.5px;
             line-height: 0.5;

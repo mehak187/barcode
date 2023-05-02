@@ -17,7 +17,7 @@
 <body>
     <header>
         <div class="mx-3 my-2 rounded-4 shadow d-flex align-items-center py-2 px-4 justify-content-between bg-warning">
-            <a href="dashboard" class="bar-logo">
+            <a href="/dashboard" class="bar-logo">
                 <img src="{{asset('/img/logo.png')}}" alt="">
             </a>
             <h1 class="text-uppercase fs-3 fw-bold blue-txt mb-0">Customers List</h1>
