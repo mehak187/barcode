@@ -10,7 +10,7 @@
 <body>
     <header>
         <div class="mx-3 my-2 rounded-4 shadow d-flex align-items-center py-2 px-4 justify-content-between bg-warning">
-            <a href="dashboard" class="bar-logo">
+            <a href="/dashboard" class="bar-logo">
                 <img src="{{ asset('/img/logo.png') }}" alt="">
             </a>
             <h1 class="text-uppercase fs-3 fw-bold blue-txt mb-0">Customer Details</h1>
@@ -40,6 +40,11 @@
                 @if (session('success'))
                     <p class="py-2 px-3 bg-success text-white my-3 rounded">
                         {{ session('success') }}
+                    </p>
+                @endif
+                @if (session('error'))
+                <p class="py-2 px-3 bg-danger text-center text-white my-3 rounded">
+                {{ session('error') ??"" }}
                     </p>
                 @endif
                 <!-- -----secondary-heading------ -->
@@ -163,7 +168,7 @@
 
                                 <label for="num" class="form-label blue-cl fs-5 fw-bold">From:</label>
                                 <input type="number" class="form-control" name="from" id="from"
-                                    value="{{ $from_value }}" min="{{ $from_value }}" max="9999999999"
+                                    value="{{ $from_value }}" max="9999999999"
                                     step="1" maxlength="10">
                             </div>
                             <div class="mt-3">

@@ -23,7 +23,7 @@ class MemberController extends Controller
 
             $details = Member::where('members.id', $id)
             ->leftJoin('annoucements','members.gym_id','=','annoucements.gym_id')
-            ->leftJoin('users','users.id','=','annoucements.gym_id')
+            ->leftJoin('users','members.gym_id','=','users.id')
             ->select('members.name','members.photo','members.address1','members.address2','barcode','annoucements.annoucement','users.photo as gym_photo')->first();
             $data['details']['id'] =  $details->id;
             $data['details']['name'] =  $details->name;
@@ -35,7 +35,7 @@ class MemberController extends Controller
             $data['details']['gym_photo'] =  asset('myimgs/'.$details->gym_photo);
             $data['details']['schedule'] = Schedule::where('gym_id', $member_gym->gym_id)
                 ->first();
-
+            $data['details']['ads']=Ad::get();
             $success = "Member details";
             return $this->sendJsonResponse($data, $success);
         } catch (\Exception $e) {
