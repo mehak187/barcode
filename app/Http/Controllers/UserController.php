@@ -71,7 +71,7 @@ class UserController extends Controller
     
     public function saveGymBarcode(Request $req)
     {
-        $check=GymBarcode::where(function ($query) use ($req) {
+        $check=GymBarcode::where('gym_id',$req->gym_id)->where(function ($query) use ($req) {
             $query->whereBetween('from', [$req->from, $req->to])
                   ->orWhereBetween('to', [$req->from, $req->to]);
         })->get()->toArray();
@@ -116,11 +116,10 @@ class UserController extends Controller
     public function customerDetails($id)
     {
         $data['gym_id'] = $id;
-
         $data['lists'] = User::where('users.id', $id)
             ->leftjoin('gym_barcodes', 'users.id', '=', 'gym_barcodes.gym_id')
             ->select('gym_barcodes.*', 'users.id as user_id')->get();
-        $data['maxs'] = GymBarcode::max('to');
+        $data['maxs'] = GymBarcode::where('gym_id',$id)->max('to');
 
         $data['totalBarcode'] = User::where('users.id', $id)
             ->leftjoin('gym_barcodes', 'users.id', '=', 'gym_barcodes.gym_id')
@@ -128,7 +127,7 @@ class UserController extends Controller
 
         $data['lastPurchased'] = User::where('users.id', $id)
             ->leftjoin('gym_barcodes', 'users.id', '=', 'gym_barcodes.gym_id')
-            ->select('gym_barcodes.branches')->orderBy('gym_barcodes.id', 'desc')->limit(1)
+            ->select('gym_barcodes.branches')->orderBy('gym_barcodes.from', 'desc')->limit(1)
             ->pluck('gym_barcodes.branches')
             ->first();
 
@@ -149,7 +148,7 @@ class UserController extends Controller
 
         $rows = User::where('users.id', $id)
         ->leftJoin('gym_barcodes', 'users.id', '=', 'gym_barcodes.gym_id')
-            ->select('from', 'to')->get();
+            ->select('from', 'to')->orderBy('gym_barcodes.from','asc')->get();
 
         $result = [];
         foreach ($rows as $row) {
@@ -168,7 +167,7 @@ class UserController extends Controller
         $row = User::where('users.id', $id)
             ->leftJoin('gym_barcodes', 'users.id', '=', 'gym_barcodes.gym_id')
             ->select('gym_barcodes.from', 'gym_barcodes.to')
-            ->orderBy('gym_barcodes.id', 'desc')
+            ->orderBy('gym_barcodes.from', 'asc')
             ->limit(1)
             ->first();
 
@@ -194,7 +193,7 @@ class UserController extends Controller
     {
         $data['gym_id'] = $id;
         $rows = GymBarcode::where('gym_barcodes.gym_id', $id)
-        ->select('from', 'to')->get();
+        ->select('from', 'to')->orderBy('from','asc')->get();
         $result = [];
         foreach ($rows as $row) {
             for ($i = $row->from; $i <= $row->to; $i++) {

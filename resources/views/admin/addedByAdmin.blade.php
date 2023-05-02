@@ -7,7 +7,7 @@
     <style>
         .my-barcode {
             font-family: 'Libre Barcode 39';
-            font-size: 52px;
+            font-size: 46px;
             transform: scaleY(2);
             letter-spacing: -2.5px;
             line-height: 0.5;
@@ -71,7 +71,7 @@
                         @else
                             <div class="col-md-6 col-lg-4 col-xl-3 my-3">
                                 <div class="bg-grey px-4 py-2 rounded-4 pt-5 d-flex flex-column align-items-center">
-                                    <div class="my-barcode mt-4">{{ str_pad($barnmbr, 10, '0', STR_PAD_LEFT) }}</div>
+                                    <div class="my-barcode mt-4">{{$gym_id}}G{{ str_pad($barnmbr, 10, '0', STR_PAD_LEFT) }}</div>
                                     <p>{{ str_pad($barnmbr, 10, '0', STR_PAD_LEFT) }}</p>
                                 </div>
                             </div>

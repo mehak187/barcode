@@ -7,7 +7,7 @@
     <style>
         .my-barcode {
             font-family: 'Libre Barcode 39';
-            font-size: 52px;
+            font-size: 46px;
             transform: scaleY(2);
             letter-spacing: -2.5px;
             line-height: 0.5;
@@ -17,7 +17,7 @@
 <body>
     <header>
         <div class="mx-3 my-2 rounded-4 shadow d-flex align-items-center py-2 px-4 justify-content-between bg-warning">
-            <a href="dashboard" class="bar-logo">
+            <a href="/dashboard" class="bar-logo">
                 <img src="{{asset('/img/logo.png')}}" alt="">
             </a>
             <h1 class="text-uppercase fs-3 fw-bold blue-txt mb-0">Customers List</h1>
@@ -67,7 +67,7 @@
                         @foreach ($results as $result)
                         <div class="col-md-6 col-lg-4 col-xl-3 my-3">
                             <div class="bg-grey px-4 py-2 rounded-4 pt-5 d-flex flex-column align-items-center">
-                                <div class="my-barcode mt-4">{{$result}}</div>
+                                <div class="my-barcode mt-4">{{$gym_id}}G{{$result}}</div>
                                 <p>{{$result}}</p>
                             </div>
                         </div>
