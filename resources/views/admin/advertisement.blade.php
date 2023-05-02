@@ -103,20 +103,14 @@
                                         <h6 class="fw-bold fs-4 text-uppercase blue-txt">All Ads</h6>
                                         @foreach ($ads as $ad)
                                             <div class="bg-grey row px-3 align-items-center py-3 rounded-3 my-3 customer-all service-box">
-                                                <div class="col-sm-11">
-                                                    <div class="row ">
-                                                        <div class="col-md-6 my-2 my-lg-0 col-xl-4 d-flex align-items-center">
-                                                            <div class="me-2">
-                                                                <img src="{{$ad['image']}}" style="height:150px; width:150px; max-width:100%; border-radius:10px"
-                                                                    alt="">
-                                                            </div>
-                                                            <div>
-                                                                <h6 class="mb-0 fs-6 searchable">{{ $ad['title'] }}</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <div class="col-md-2 col-12">
+                                                    <img src="{{$ad['image']}}" style="height:150px; width:150px; max-width:100%; border-radius:10px"
+                                                        alt="">
                                                 </div>
-                                                <div class="col-sm-1 d-flex justify-content-end align-items-center">
+                                                <div class="col-md-9 col-11">
+                                                    <h6 class="mb-0 fs-6 searchable">{{ $ad['title'] }}</h6>
+                                                </div>
+                                                <div class="col-md-1 d-flex justify-content-end align-items-center">
                                                     <a href="/deleteAds/{{$ad['id']}}"
                                                         class="bg-blue-g bs-opacity rounded-circle px-2 py-1 d-inline-block">
                                                     <i class="fas fa-trash text-light fs-5"></i></a>

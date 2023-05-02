@@ -23,7 +23,6 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/addedByAdmin/{id}', [UserController::class, 'addedByAdmin']);
     Route::get('/usedBarcodes/{id}', [UserController::class, 'usedBarcodes']);
     Route::get('/remBarcodes/{id}', [UserController::class, 'remBarcodes']);
-    
     Route::get('/advertisement', [UserController::class, 'advertisement']);
     Route::post('/saveAd', [UserController::class, 'saveAd']);
     Route::get('/deleteAds/{id}', [UserController::class, 'deleteAds']);
@@ -49,11 +48,3 @@ Route::group(['middleware' => ['GymMiddleware']], function () {
 // Route::get('/sendattachmentemail', [MailController::class, 'attachment_email']);
 Route::get('send-sms', [ SmsController::class, 'index' ])->name('get.sms.form');
 Route::post('send-sms', [ SmsController::class, 'sendMessage' ])->name('send.sms');
-
-
-
-
-
-
-
-

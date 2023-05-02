@@ -28,7 +28,7 @@ class MemberController extends Controller
             $data['details']['id'] =  $details->id;
             $data['details']['name'] =  $details->name;
             $data['details']['photo'] =  $details->photo;
-            $data['details']['barcode'] =  $details->barcode;
+            $data['details']['barcode'] =  $details->gym_id.'G'.str_pad($details->barcode, 10, "0", STR_PAD_LEFT);
             $data['details']['address1'] =  $details->address1;
             $data['details']['address2'] =  $details->address2;
             $data['details']['annoucement'] =  $details->annoucement;
