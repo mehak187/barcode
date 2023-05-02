@@ -42,6 +42,7 @@ Route::group(['middleware' => ['GymMiddleware']], function () {
     Route::post('/saveTiming', [GymController::class, 'saveTiming']);
     Route::post('/saveSendMail', [GymController::class, 'saveSendMail']);
     Route::post('/saveSendPhone', [GymController::class, 'saveSendPhone']);
+    Route::get('/checkBarcode', [GymController::class, 'checkBarcode']);
 });
 // Route::get('/sendbasicemail', [MailController::class, 'basic_email']);
 // Route::get('/sendhtmlemail', [MailController::class, 'html_email']);
