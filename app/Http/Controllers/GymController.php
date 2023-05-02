@@ -57,7 +57,7 @@ class GymController extends Controller
         ->first();
 
         $data['Gymtotal'] = GymBarcode::where('gym_barcodes.gym_id', $mid)
-            ->get();
+            ->orderBy('from','asc')->get();
         if ($data['Gymtotal']->isEmpty()) {
             $data['Gymrecord'] = "No records found.";
         }
@@ -246,6 +246,9 @@ class GymController extends Controller
         // print_r($resultnew);die();
         $data['results'] = $resultnew;
         $data['upmembers'] = Member::where('id', $id)->first();
+        
+        $data['Gymtotal'] = GymBarcode::where('gym_barcodes.gym_id', $mid)
+            ->orderBy('from','asc')->get();
         return view('gym.updateMember', $data);
     }
     public function editmember(Request $req)

@@ -109,7 +109,15 @@
                     <div class="mt-3">
                       <label for="m-bar" class="form-label blue-cl fw-bold px-1 fs-5">Bar Codes</label>
                       <input type="text" value="{{ str_pad($upmembers->barcode, 10, '0', STR_PAD_LEFT) }}" name="barcode" id="barcode" placeholder="0000000000" class="form-control shadow-none text-secondary"  maxlength="10" required="">
-                                   
+                      <span class="d-block text-secondary">Hint (Your Barcodes):
+                      @if(count($Gymtotal)>0)
+                          @foreach($Gymtotal as $available)
+                              {{ str_pad($available->from, 10, '0', STR_PAD_LEFT) }}-{{ str_pad($available->to, 10, '0', STR_PAD_LEFT) }},
+                          @endforeach
+                      @else
+                          No barcode Found
+                      @endif
+                                    </span>      
                       {{--<select name="barcode" id="barcode" class="form-control shadow-none text-secondary">
                           <option value="">Select</option>
                           @foreach ($results as $barnmbr)
