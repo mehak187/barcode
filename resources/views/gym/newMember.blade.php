@@ -205,7 +205,16 @@
                                     {{-- <input type="text" name="barcode" value="0"> --}}
                                 @else
                                     <input type="text" name="barcode" id="barcode" placeholder="0000000000" class="form-control shadow-none text-secondary"  maxlength="10" required="">
-                                        {{--<option value="">Select</option>
+                                    <span class="d-block text-secondary">Hint (Your Barcodes):
+                                        @if(count($Gymtotal)>0)
+                                            @foreach($Gymtotal as $available)
+                                                {{ str_pad($available->from, 10, '0', STR_PAD_LEFT) }}-{{ str_pad($available->to, 10, '0', STR_PAD_LEFT) }},
+                                            @endforeach
+                                        @else
+                                            No barcode Found
+                                        @endif
+                                    </span>    
+                                    {{--<option value="">Select</option>
                                     @foreach ($results as $barnmbr)
                                         <option  value="{{ str_pad($barnmbr, 10, '0', STR_PAD_LEFT) }}">{{ str_pad($barnmbr, 10, '0', STR_PAD_LEFT) }}</option>
                                     @endforeach

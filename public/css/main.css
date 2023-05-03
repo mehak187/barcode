@@ -70,3 +70,7 @@ body {
         margin: 0 10px;
     }
 }
+.p-img img{
+    height: 50px;
+    width: 50px;
+}
