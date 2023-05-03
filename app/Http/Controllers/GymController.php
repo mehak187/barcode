@@ -175,7 +175,7 @@ class GymController extends Controller
             return response()->json(['status' => 'available']);
         }
         elseif($check>0){
-            return response()->json(['status' => 'assigned']);
+            return response()->json(['status' => 'assigned','id'=>$id]);
         }
         else {
             return response()->json(['status' => 'notavailable']);
@@ -228,7 +228,7 @@ class GymController extends Controller
         // ---end of photo of login user---------
         $mid = auth()->user()->id;
         $rows = GymBarcode::where('gym_barcodes.gym_id', $mid)
-            ->select('from', 'to')->orderBy('from','asc')->get();
+                ->select('from', 'to')->orderBy('from','asc')->get();
         $result = [];
         foreach ($rows as $row) {
             for ($i = $row->from; $i <= $row->to; $i++) {
@@ -245,9 +245,7 @@ class GymController extends Controller
         $resultnew = array_diff($result);
         // print_r($resultnew);die();
         $data['results'] = $resultnew;
-
-        $data['upmembers'] = Member::where('id', $id)
-            ->first();
+        $data['upmembers'] = Member::where('id', $id)->first();
         return view('gym.updateMember', $data);
     }
     public function editmember(Request $req)
