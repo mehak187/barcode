@@ -57,7 +57,7 @@
         </div>
         <div class="row shadow bg-fd px-3 py-4 rounded-3">
             <div class="col-xl-8 col-lg-7 px-2">
-                <form method="POST" action="/savemember" enctype="multipart/form-data">
+                <form method="POST" action="/savemember" id="form" enctype="multipart/form-data">
                     @if (session('success'))
                         <p class="py-2 px-3 bg-success text-white my-3 rounded">
                             {{ session('success') }}
@@ -157,7 +157,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="mt-3">
-                                <input type="text" class="form-control shadow-none text-secondary" id="address-2"
+                                <input type="number" class="form-control shadow-none text-secondary" id="address-2"
                                     placeholder="Zip" name="zip" value="{{ old('zip') }}">
                                 @error('zip')
                                     <span class="error text-danger">
@@ -204,12 +204,12 @@
                                     </span>
                                     {{-- <input type="text" name="barcode" value="0"> --}}
                                 @else
-                                    <select name="barcode" id="barcode" class="form-control shadow-none text-secondary">
-                                        <option value="">Select</option>
+                                    <input type="text" name="barcode" id="barcode" placeholder="0000000000" class="form-control shadow-none text-secondary"  maxlength="10" required="">
+                                        {{--<option value="">Select</option>
                                     @foreach ($results as $barnmbr)
                                         <option  value="{{ str_pad($barnmbr, 10, '0', STR_PAD_LEFT) }}">{{ str_pad($barnmbr, 10, '0', STR_PAD_LEFT) }}</option>
                                     @endforeach
-                                    </select>
+                                    </select>--}}
                                     @error('barcode')
                                         <span class="error text-danger">
                                             {{ $message }}
@@ -220,7 +220,7 @@
                         </div>
                         <div class="col-sm-6">
                             <div class="mt-5">
-                              <button type="submit" class="border-0 bg-transparent">
+                              <button type="submit" id="submitBtn" class="border-0 bg-transparent">
                                 <a class="btn btn-warning text-decoration-none rounded-pill text-white px-4 py-2">Save
                                         & Assign Barcode</a>
                               </button>
@@ -277,6 +277,7 @@
         }
     </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
         const email1 = document.getElementById('m-email');
         const email2 = document.getElementById('mail2');
@@ -287,21 +288,58 @@
         $('#barcode').change(function(event) {
             event.preventDefault();
             var id=$(this).val();
-            $.ajax({
-                type: 'get',
-                url: '/checkBarcode',
-                data: {id:id},
-                success: function(data) {
-                    if(data.status=="assigned"){
-                        alert('This Barcode has been assigned');
-                        $('#barcode').val("");
+            if (id.length != 10) {
+                swal('Barcode must be exactly 10 digits in length.');
+                $(this).val("");
+            }
+            else{
+                $.ajax({
+                    type: 'get',
+                    url: '/checkBarcode',
+                    data: {id:id},
+                    success: function(data) {
+                        if(data.status=="assigned"){
+                            swal('This Barcode has been assigned');
+                            $('#barcode').val("");
+                        }
+                        if(data.status=="notavailable"){
+                            swal('This Barcode is not available');
+                            $('#barcode').val("");
+                        }
                     }
-                    else{
-
+                });
+            }
+        });
+        
+        $('#submitBtn').click(function(event) {
+            event.preventDefault();
+            var id=$("#barcode").val();
+            if (id.length != 10) {
+                swal('Barcode must be exactly 10 digits in length.');
+                $(this).val("");
+            }
+            else{
+                $.ajax({
+                    type: 'get',
+                    url: '/checkBarcode',
+                    data: {id:id},
+                    success: function(data) {
+                        if(data.status=="assigned"){
+                            swal('This Barcode has been assigned');
+                            $('#barcode').val("");
+                        }
+                        else if(data.status=="notavailable"){
+                            swal('This Barcode is not available');
+                            $('#barcode').val("");
+                        }
+                        else{
+                            $("#form").submit();
+                        }
                     }
-                }
-            });
-            });
+                });
+            }
+   
+        });
     </script>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -159,14 +159,26 @@ class GymController extends Controller
         ]);
     }
     public function checkBarcode(Request $request){
+        $rows = GymBarcode::where('gym_barcodes.gym_id', auth()->user()->id)
+            ->select('from', 'to')->orderBy('from','asc')->get();
+
+        $result = [];
+        foreach ($rows as $row) {
+            for ($i = $row->from; $i <= $row->to; $i++) {
+                $result[] = str_pad($i, 10, "0", STR_PAD_LEFT);
+            }
+        }
         $id=ltrim(str_pad($request->id, 10, "0", STR_PAD_LEFT), '0');
         $check=Member::where('barcode',$id)->where('gym_id',auth()->user()->id)
         ->get()->count();
-        if($check>0){
+        if($check==0 && in_array($request->id, $result)){
+            return response()->json(['status' => 'available']);
+        }
+        elseif($check>0){
             return response()->json(['status' => 'assigned']);
         }
         else {
-            return response()->json(['status' => 'available']);
+            return response()->json(['status' => 'notavailable']);
         }
 
 
