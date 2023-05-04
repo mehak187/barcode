@@ -83,7 +83,7 @@
                             <div class="mt-3">
                                 <label for="m-name" class="form-label blue-cl fw-bold px-1 fs-5">Member Name:</label>
                                 <input type="text" class="form-control shadow-none text-secondary" id="m-name"
-                                    placeholder="Member Name" name="name" value="{{ old('name') }}">
+                                    placeholder="Member Name" name="name" autocomplete="off">
                                 @error('name')
                                     <span class="error text-danger">
                                         {{ $message }}
@@ -185,7 +185,7 @@
                             <div class="mt-3">
                                 <label for="password" class="form-label blue-cl fw-bold px-1 fs-5">password</label>
                                 <input type="password" class="form-control shadow-none text-secondary" id="password"
-                                    placeholder="password" name="password" value="{{ old('password') }}">
+                                    placeholder="password" name="password" autocomplete="off">
                                 @error('password')
                                     <span class="error text-danger">
                                         {{ $message }}
@@ -251,7 +251,12 @@
                             <label class="blue-cl fs-6 px-1 fw-bold">Email - How To Download The App</label>
                             <input type="hidden" value="{{$logid}}" name="gym_id">
                             <input type="email" class="text-secondary shadow-none border border-2 form-control"
-                                placeholder="Member@Gmail.Com" name="mailid" id="mail2" readonly required>
+                                placeholder="Member@Gmail.Com"  value="{{ old('email') }}" name="mailid" id="mail2" readonly required>
+                                @error('mailid')
+                                    <span class="error text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             <textarea class="text-secondary form-control shadow-none border border-2 px-3 py-2 mt-2 rounded-3"
                                 name="msg" rows="4" required>@if (isset($saveSendMail)){{ $saveSendMail->msg }}@endif</textarea>
                             {{-- <div class="mt-3">
@@ -265,7 +270,12 @@
                             <input type="hidden" value="{{$logid}}" name="gym_id">
                             <input type="tel"
                                 class="text-secondary form-control border border-2 px-3 mt-2 py-2 d-block rounded-3"
-                                placeholder="+1 849 893 002 801" name="phoneid" required>
+                                placeholder="+1 849 893 002 801" name="phoneid" required="">
+                                @error('phoneid')
+                                    <span class="error text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             <textarea class="text-secondary form-control shadow-none border border-2 px-3 py-2 mt-2 rounded-3" 
                             rows="4" name="msg" required >@if (isset($saveSendPhone)){{ $saveSendPhone->msg }}@endif</textarea>
                             {{-- <div class="mt-3">
@@ -290,35 +300,37 @@
 <script>
         const email1 = document.getElementById('m-email');
         const email2 = document.getElementById('mail2');
+        document.getElementById("password").autocomplete = "off";
+        document.getElementById("m-name").autocomplete = "off";
         email1.addEventListener('input', function() {
         email2.value = email1.value;
         email2.readOnly = true;
         });
-        $('#barcode').change(function(event) {
-            event.preventDefault();
-            var id=$(this).val();
-            if (id.length != 10) {
-                swal('Barcode must be exactly 10 digits in length.');
-                $(this).val("");
-            }
-            else{
-                $.ajax({
-                    type: 'get',
-                    url: '/checkBarcode',
-                    data: {id:id},
-                    success: function(data) {
-                        if(data.status=="assigned"){
-                            swal('This Barcode has been assigned');
-                            $('#barcode').val("");
-                        }
-                        if(data.status=="notavailable"){
-                            swal('This Barcode is not available');
-                            $('#barcode').val("");
-                        }
-                    }
-                });
-            }
-        });
+        // $('#barcode').change(function(event) {
+        //     event.preventDefault();
+        //     var id=$(this).val();
+        //     if (id.length != 10) {
+        //         swal('Barcode must be exactly 10 digits in length.');
+        //         $(this).val("");
+        //     }
+        //     else{
+        //         $.ajax({
+        //             type: 'get',
+        //             url: '/checkBarcode',
+        //             data: {id:id},
+        //             success: function(data) {
+        //                 if(data.status=="assigned"){
+        //                     swal('This Barcode has been assigned');
+        //                     $('#barcode').val("");
+        //                 }
+        //                 if(data.status=="notavailable"){
+        //                     swal('This Barcode is not available');
+        //                     $('#barcode').val("");
+        //                 }
+        //             }
+        //         });
+        //     }
+        // });
         
         $('#submitBtn').click(function(event) {
             event.preventDefault();
