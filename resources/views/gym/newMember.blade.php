@@ -83,7 +83,7 @@
                             <div class="mt-3">
                                 <label for="m-name" class="form-label blue-cl fw-bold px-1 fs-5">Member Name:</label>
                                 <input type="text" class="form-control shadow-none text-secondary" id="m-name"
-                                    placeholder="Member Name" name="name" autocomplete="off">
+                                    placeholder="Member Name" name="name" autocomplete="off" value="{{ old('name') }}">
                                 @error('name')
                                     <span class="error text-danger">
                                         {{ $message }}
@@ -185,7 +185,7 @@
                             <div class="mt-3">
                                 <label for="password" class="form-label blue-cl fw-bold px-1 fs-5">password</label>
                                 <input type="password" class="form-control shadow-none text-secondary" id="password"
-                                    placeholder="password" name="password" autocomplete="off">
+                                    placeholder="password" name="password" autocomplete="off" value="{{ old('password') }}">
                                 @error('password')
                                     <span class="error text-danger">
                                         {{ $message }}
