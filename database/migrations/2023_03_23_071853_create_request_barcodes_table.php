@@ -15,6 +15,8 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('gym_id');
             $table->integer('barcodes');
+            $table->integer('from');
+            $table->integer('to');
             $table->timestamps();
         });
     }

@@ -36,7 +36,7 @@
     <!-- --------box-section------- -->
     <section class="mt-3 px-4">
         <div class="row justify-content-center">
-            <div class="col-12 col-xl-11 col-xxl-10">
+            <div class="col-12 col-lg-11">
                 @if (session('success'))
                     <p class="py-2 px-3 bg-success text-white my-3 rounded">
                         {{ session('success') }}
@@ -101,15 +101,19 @@
                     </div>
                     <!-- ----box----- -->
                     <div class="col-sm-6 col-md-2 my-3 d-flex flex-column  border-end border-warning pe-4 ps-0 py-2">
-                        <h3 class="fw-normal blue-txt fs-6">
-                            New Brcodes Purchased by customer
-                        </h3>
-                        @if($orderBarcodesTot)
-                        <p class="fw-bold blue-txt mb-3">
-                            {{$orderBarcodesTot}}
+                        <p class="blue-txt mb-0">
+                            New Brcodes Requested by customer
+                        @if($orderBarcodes)
+                        :<b class="fs-6">{{$orderBarcodes['barcodes']}}</b>
+                        </p>
+                        <p class="blue-txt mb-0 mt-2">
+                            From: <b class="fs-6">{{$orderBarcodes['from']}}</b>
+                        </p>
+                        <p class="blue-txt mb-0 mt-2">
+                            To: <b class="fs-6">{{$orderBarcodes['to']}}</b>
                         </p>
                         @else
-                        <p class="fw-bold blue-txt mb-3">0</p>
+                        <p><b class="fs-6">0</b></p>
                         @endif
                     </div>
                     <div class="col-sm-6 col-md-2 my-3 d-flex flex-column  pe-4 ps-0 py-2">
@@ -148,7 +152,7 @@
                                 Add barcode form
                         ==================================== --}}
                         {{-- @foreach ($lists as $detail) --}}
-                        @if($orderBarcodesTot==0)
+                        @if(count($orderBarcodes)==0)
                         <div class="alert alert-danger py-2">
                             Customer does not request for any barcode
                         </div>
@@ -160,39 +164,39 @@
                             <div>
                                 <label for="rangeInput" class="form-label blue-cl fs-5 fw-bold">No. of
                                     barcodes:</label>
-                                <input type="number" class="form-control" name="branches" placeholder="{{$orderBarcodesTot}}"
-                                    value="" id="myRange" max="{{$orderBarcodesTot}}">
+                                <input type="number" class="form-control" name="branches" value="{{$orderBarcodes['barcodes']}}"
+                                    value="" id="myRange" max="{{$orderBarcodes['barcodes']}}" readonly>
                             </div>
                             <div class="mt-3">
                                 <?php $from_value = $maxs + 1; ?>
 
                                 <label for="num" class="form-label blue-cl fs-5 fw-bold">From:</label>
                                 <input type="number" class="form-control" name="from" id="from"
-                                    value="{{ $from_value }}" max="9999999999"
-                                    step="1" maxlength="10">
+                                value="{{$orderBarcodes['from']}}" max="9999999999"
+                                    step="1" maxlength="10" readonly>
                             </div>
                             <div class="mt-3">
                                 <label for="num3" class="form-label blue-cl fs-5 fw-bold">To:</label>
                                 <input type="number" class="form-control" name="to" id="output"
-                                    maxlength="10" max="" value="" readonly>
+                                    maxlength="10" max="" value="{{$orderBarcodes['to']}}" readonly>
                                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                                 <script>
                                     var myRange = document.getElementById("myRange");
                                     var from = document.getElementById("from");
-                                    from.value = from.value.toString().padStart(10, '0');
+                                    from.value = from.value.toString();
                                     var output = document.getElementById("output");
                                 
                                     myRange.addEventListener("change", function() {
                                         var rangeValue = parseFloat(myRange.value);
                                         var fromValue = parseFloat(from.value);
                                         var result = Math.round(rangeValue + fromValue -1);
-                                        output.value = result.toString().padStart(10, "0");
+                                        output.value = result.toString();
                                     });
                                     from.addEventListener("change", function() {
                                         var rangeValue = parseFloat(myRange.value);
                                         var fromValue = parseFloat(from.value);
                                         var result = Math.round(rangeValue + fromValue -1);
-                                        output.value = result.toString().padStart(10, "0");
+                                        output.value = result.toString();
                                     });
                                 </script>
                             </div>

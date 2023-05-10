@@ -36,7 +36,8 @@ class GymController extends Controller
         $result = [];
         foreach ($rows as $row) {
             for ($i = $row->from; $i <= $row->to; $i++) {
-                $result[] = str_pad($i, 10, "0", STR_PAD_LEFT);
+                // $result[] = str_pad($i, 10, "0", STR_PAD_LEFT);
+                $result[] = $i;
             }
         }
         // ----------select barcode column from member and then use array differ to check that member barcode value should not be in $result
@@ -167,10 +168,10 @@ class GymController extends Controller
         $result = [];
         foreach ($rows as $row) {
             for ($i = $row->from; $i <= $row->to; $i++) {
-                $result[] = str_pad($i, 10, "0", STR_PAD_LEFT);
+                $result[] = $i;
             }
         }
-        $id=ltrim(str_pad($request->id, 10, "0", STR_PAD_LEFT), '0');
+        $id=ltrim($request->id);
         $check=Member::where('barcode',$id)->where('gym_id',auth()->user()->id)
         ->get()->count();
         if($check==0 && in_array($request->id, $result)){
@@ -202,6 +203,9 @@ class GymController extends Controller
 
         $data['Gymtotal'] = GymBarcode::where('gym_barcodes.gym_id', $mid)
             ->get();
+        
+        $data['Gymtotaltwo'] = GymBarcode::where('gym_barcodes.gym_id', $mid)
+            ->orderBy('from','asc')->get();
         if ($data['Gymtotal']->isEmpty()) {
             $data['Gymrecord'] = "No records found.";
         }
@@ -234,7 +238,7 @@ class GymController extends Controller
         $result = [];
         foreach ($rows as $row) {
             for ($i = $row->from; $i <= $row->to; $i++) {
-                $result[] = str_pad($i, 10, "0", STR_PAD_LEFT);
+                $result[] = $i;
             }
         }
         // ----------select barcode column from member and then use array differ to check that member barcode value should not be in $result
@@ -272,27 +276,82 @@ class GymController extends Controller
     }
     public function saveRequestBarcode(Request $req)
     {
-        RequestBarcode::create([
-            'barcodes' => $req->barcodes,
-            'gym_id' => $req->gym_id,
-            'date' => $req->date,
-        ]);
+        $mid = auth()->user()->id;
 
-        $mname = auth()->user()->name;
+        $Gymtotaltwo = GymBarcode::where('gym_barcodes.gym_id', $mid) 
+        ->orderBy('from','asc')->get();
+        $numbers='';
+        $results='';
+        foreach($Gymtotaltwo as $available)
+        {
+            $numbers='';
+            $range = range(intval($available->from), intval($available->to));
+            $numbers = implode(",", $range);
+            $results=$results.$numbers.',';
+        }
+        $results=explode(",", $results);
 
-        $requestBarcode = [
-            'barcodes' => $req->barcodes,
-            'gym_id' => $req->gym_id,
-            'date' => $req->date,
-            'mname' => $mname
-        ];
-        $to_email = 'abbasraj789@gmail.com';
-        Mail::to($to_email)->send(new RequestBarcodeMail($requestBarcode));
+        // ----already requesed---
+        // $Reqtotaltwo = RequestBarcode::where('request_barcodes.gym_id', $mid) 
+        // ->orderBy('from','asc')->get();
+        // $numberstwo='';
+        // $resultstwo='';
+        // foreach($Reqtotaltwo as $availabletwo)
+        // {
+        //     $numberstwo='';
+        //     $rangetwo = range(intval($availabletwo->from), intval($availabletwo->to));
+        //     $numberstwo = implode(",", $rangetwo);
+        //     $resultstwo=$resultstwo.$numberstwo.',';
+        // }
+        // $resultstwo=explode(",", $resultstwo);
+        // $resultstwo = array_unique($resultstwo);
 
-        return redirect('/member')->with([
-            'requestSuccess' => 'Request sent successfully',
-            'requestBarcode' => $requestBarcode,
-        ]);
+        if ((in_array($req->from, $results)) || (in_array($req->to, $results))){
+            return redirect('/member')->with([
+                'requestError' => 'You already have these barcodes. Choose any other barcode.',
+            ]);
+        }  
+        // else if (in_array($req->from, $resultstwo)) {
+        //     return redirect('/member')->with([
+        //         'alreadyrequestError' => 'Aleady requested barcodes',
+        //     ]);
+        // }
+        else{
+            $requestBarcode = RequestBarcode::where('gym_id', $mid)->exists();
+            if ($requestBarcode) {
+                return redirect('/member')->with([
+                    'alreadysendrequest' => 'You have already sent barcode request.',
+                ]);
+            } 
+            // -----------if request already exist-----------
+            else {
+                RequestBarcode::create([
+                    'barcodes' => $req->barcodes,
+                    'gym_id' => $req->gym_id,
+                    'date' => $req->date,
+                    'from' => $req->from,
+                    'to' => $req->to,
+                ]);
+    
+                $mname = auth()->user()->name;
+
+                $requestBarcode = [
+                    'barcodes' => $req->barcodes,
+                    'gym_id' => $req->gym_id,
+                    'date' => $req->date,
+                    'mname' => $mname,
+                    'from' => $req->from,
+                    'to' => $req->to,
+                ];
+                $to_email = 'abbasraj789@gmail.com';
+                Mail::to($to_email)->send(new RequestBarcodeMail($requestBarcode));
+    
+                return redirect('/member')->with([
+                    'requestSuccess' => 'Request sent successfully',
+                    'requestBarcode' => $requestBarcode,
+                ]);
+            }
+        }
     }
     public function gymsTiming()
     {

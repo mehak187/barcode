@@ -11,6 +11,8 @@ class RequestBarcode extends Model
     protected $fillable = [
         'gym_id',
         'barcodes',
-        'date'
+        'date',
+        'from',
+        'to'
     ];
 }
