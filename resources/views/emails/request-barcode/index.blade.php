@@ -25,7 +25,7 @@
 
         <p>
             I am writing to request a set of barcodes. We require a total of
-            <b>{{ $requestBarcode['barcodes'] }}</b> barcodes to be generated and delivered to us as soon as possible.<br>
+            <b>{{ $requestBarcode['barcodes'] }}</b> barcodes starting from <b>{{ $requestBarcode['from'] }}</b> to <b>{{ $requestBarcode['to'] }}</b> to be generated and delivered to us as soon as possible.<br>
 
             These barcodes will be used for my gym. We appreciate your assistance in this matter
             and look forward to receiving the barcodes promptly.<br>

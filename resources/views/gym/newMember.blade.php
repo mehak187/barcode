@@ -204,11 +204,11 @@
                                     </span>
                                     {{-- <input type="text" name="barcode" value="0"> --}}
                                 @else
-                                    <input type="text" name="barcode" id="barcode" placeholder="0000000000" class="form-control shadow-none text-secondary"  maxlength="10" required="">
+                                    <input type="number" name="barcode" id="barcode" placeholder="0" class="form-control shadow-none text-secondary"  maxlength="10" required="">
                                     <span class="d-block text-secondary">Hint (Your Barcodes):
                                         @if(count($Gymtotal)>0)
                                             @foreach($Gymtotal as $available)
-                                                {{ str_pad($available->from, 10, '0', STR_PAD_LEFT) }}-{{ str_pad($available->to, 10, '0', STR_PAD_LEFT) }},
+                                                {{$available->from}}-{{$available->to}},
                                             @endforeach
                                         @else
                                             No barcode Found
@@ -306,7 +306,8 @@
         email2.value = email1.value;
         email2.readOnly = true;
         });
-        // $('#barcode').change(function(event) {
+</script>
+        {{--    // $('#barcode').change(function(event) {
         //     event.preventDefault();
         //     var id=$(this).val();
         //     if (id.length != 10) {
@@ -361,7 +362,7 @@
             }
    
         });
-    </script>
+    </script> --}}
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>

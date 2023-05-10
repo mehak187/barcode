@@ -79,6 +79,7 @@ class UserController extends Controller
             return redirect('/customerDetails/' . $req->gym_id)->with('error', "Barcode already assigned");    
         }
         else{
+            RequestBarcode::where('gym_id', $req->gym_id)->delete();
             GymBarcode::create([
                 'gym_id' => $req->gym_id,
                 'branches' => $req->branches,
@@ -120,24 +121,36 @@ class UserController extends Controller
             ->leftjoin('gym_barcodes', 'users.id', '=', 'gym_barcodes.gym_id')
             ->select('gym_barcodes.*', 'users.id as user_id')->get();
         $data['maxs'] = GymBarcode::where('gym_id',$id)->max('to');
-
+// ----------total barcodes-------
         $data['totalBarcode'] = User::where('users.id', $id)
             ->leftjoin('gym_barcodes', 'users.id', '=', 'gym_barcodes.gym_id')
             ->sum('branches');
-
+// -------------used-barcodes------
+        $data['usedBarcodes'] = Member::where('members.gym_id', $id)
+        ->distinct()->count('id');
+// --------------last purchased---------
         $data['lastPurchased'] = User::where('users.id', $id)
             ->leftjoin('gym_barcodes', 'users.id', '=', 'gym_barcodes.gym_id')
             ->select('gym_barcodes.branches')->orderBy('gym_barcodes.from', 'desc')->limit(1)
             ->pluck('gym_barcodes.branches')
             ->first();
+// -------------requested barcode-----------
+        // $data['orderBarcodes'] = RequestBarcode::where('gym_id', $id)
+        // ->sum('barcodes');
+        $data['orderBarcodes']=[];
+        $orderBarcodes = RequestBarcode::where('gym_id', $id)
+        ->first();
+        if($orderBarcodes){
+            $data['orderBarcodes']=$orderBarcodes->toArray();
+        }
+        // $data['orderBarcodes'] = RequestBarcode::where('gym_id', $id)
+        // ->orderBy('id', 'desc')
+        // ->select('barcodes')
+        // ->first();
 
-        $data['usedBarcodes'] = Member::where('members.gym_id', $id)
-            ->distinct()->count('id');
-        $data['orderBarcodes'] = RequestBarcode::where('gym_id', $id)
-        ->sum('barcodes');
-        $data['GymBarcodeLast'] = GymBarcode::where('gym_id', $id)
-            ->sum('branches');
-        $data['orderBarcodesTot'] =  $data['orderBarcodes'] - $data['GymBarcodeLast'];
+        // $data['GymBarcodeLast'] = GymBarcode::where('gym_id', $id)
+        //     ->sum('branches');
+        // $data['orderBarcodesTot'] =  $data['orderBarcodes'] - $data['GymBarcodeLast'];
         
         return view('admin.customerDetails', $data);
     }
@@ -173,7 +186,7 @@ class UserController extends Controller
 
         $result = [];
         for ($i = $row->from; $i <= $row->to; $i++) {
-            $result[] = str_pad($i, 10, '0', STR_PAD_LEFT);
+            $result[] = $i;
         }
 
         $data['results'] = $result;
@@ -197,13 +210,14 @@ class UserController extends Controller
         $result = [];
         foreach ($rows as $row) {
             for ($i = $row->from; $i <= $row->to; $i++) {
-                $result[] = str_pad($i, 10, "0", STR_PAD_LEFT);
+                $result[] = $i;
             }
         }
     // ----------select barcode column from member and then use array differ to check that member barcode value should not be in $result
         $members = Member::pluck('barcode')->all();
         foreach ($members as &$barcode) {
-            $barcode = str_pad($barcode, 10, '0', STR_PAD_LEFT);
+            // $barcode = str_pad($barcode, 10, '0', STR_PAD_LEFT);
+            $barcode = $barcode;
         }
         
         $resultnew = array_diff($result, $members);
