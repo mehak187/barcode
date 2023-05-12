@@ -31,7 +31,6 @@ class UserController extends Controller
             'password' => 'required|string|min:8',
             'contact' => 'required',
             'address1' => 'required',
-            'address2' => 'required',
             'city' => 'required',
             'state' => 'required',
             'zip' => 'required',

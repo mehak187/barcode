@@ -72,7 +72,6 @@ class GymController extends Controller
             'email' => 'required|email|unique:users,email',
             'contact' => 'required',
             'address1' => 'required',
-            'address2' => 'required',
             'city' => 'required',
             'state' => 'required',
             'zip' => 'required',
