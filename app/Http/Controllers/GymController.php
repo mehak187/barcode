@@ -85,7 +85,7 @@ class GymController extends Controller
         Member::create([
             'name' => $req->name,
             'email' => $req->email,
-            'contact' => $req->contact,
+            'contact' => "+1".$req->contact,
             'address1' => $req->address1,
             'address2' => $req->address2,
             'city' => $req->city,
@@ -132,13 +132,13 @@ class GymController extends Controller
         if ($saveSendPhone) {
             phoneInstruction::where('gym_id', $logid)->update([
                 'gym_id' => $req->gym_id,
-                'phoneid' => $req->phoneid,
+                'phoneid' => "+1".$req->phoneid,
                 'msg' => $req->msg,
             ]);
         } else {
             phoneInstruction::create([
                 'gym_id' => $req->gym_id,
-                'phoneid' => $req->phoneid,
+                'phoneid' => "+1".$req->phoneid,
                 'msg' => $req->msg,
             ]);
         }
