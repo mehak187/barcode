@@ -173,7 +173,7 @@
                                 <label for="m-contact" class="form-label blue-cl fw-bold px-1 fs-5">Contact</label>
                                   <div class="input-group d-flex">
         <span class="input-group-text">
-            <i class="fa fa-flag-usa" aria-hidden="true"></i>
+            <img src="{{asset('img/usa.jpg')}}" alt="" class="mw-100" style="height:20px">
             +1
         </span>
         <input type="tel" class="form-control shadow-none text-secondary" id="m-contact"
@@ -274,14 +274,14 @@
                         {{-- <form action="/saveSendPhone" method="POST">
                             @csrf --}}
                             <input type="hidden" value="{{$logid}}" name="gym_id">
-                            <div class="input-group d-flex align-items-center">
-        <span class="input-group-text" style="position:relative; top:3px">
-            <i class="fa fa-flag-usa" aria-hidden="true"></i>
+                            <div class="input-group d-flex">
+        <span class="input-group-text">
+            <img src="{{asset('img/usa.jpg')}}" alt="" class="mw-100" style="height:20px">
             +1
         </span>
-        <input type="tel" class="text-secondary form-control border border-2 px-3 mt-2 py-2 d-block rounded-3 shadow-none"
-            placeholder="849 893 002 801" name="phoneid" required>
-    </div>   @error('phoneid')
+        <input type="tel" class="form-control shadow-none text-secondary" id="phoneid"
+            placeholder="783 783 119 008" name="phoneid" value="{{ old('phoneid') }}">
+    </div> @error('phoneid')
                                     <span class="error text-danger">
                                         {{ $message }}
                                     </span>
