@@ -155,7 +155,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-  // var member=<?php echo json_encode($upmembers->barcode)?>;
+  var member=<?php echo json_encode($upmembers->barcode)?>;
           // $('#barcode').change(function(event) {
           //   event.preventDefault();
           //   var id=$(this).val();
@@ -189,40 +189,33 @@
           //     }
           // });
             
-        // $('#submitBtn').click(function(event) {
-        //     event.preventDefault();
-        //     var id=$("#barcode").val();
-        //     if (id.length != 10) {
-        //         swal('Barcode must be exactly 10 digits in length.');
-        //         $(this).val("");
-        //     }
-        //     else{
-        //         $.ajax({
-        //             type: 'get',
-        //             url: '/checkBarcode',
-        //             data: {id:id},
-        //             success: function(data) {
-        //                 if(data.status=="assigned"){
-        //                   if(data.id==member){
-        //                     $("#form").submit();
-        //                     }
-        //                     else{
-        //                       swal('This Barcode has been assigned');
-        //                       $('#barcode').val("");
-        //                     }   
-        //                 }
-        //                 else if(data.status=="notavailable"){
-        //                     swal('This Barcode is not available');
-        //                     $('#barcode').val("");
-        //                 }
-        //                 else{
-        //                     $("#form").submit();
-        //                 }
-        //             }
-        //         });
-        //     }
-   
-        // });
+        $('#submitBtn').click(function(event) {
+            event.preventDefault();
+            var id=$("#barcode").val();
+                $.ajax({
+                    type: 'get',
+                    url: '/checkBarcode',
+                    data: {id:id},
+                    success: function(data) {
+                        if(data.status=="assigned"){
+                          if(data.id==member){
+                            $("#form").submit();
+                            }
+                            else{
+                              swal('This Barcode has been assigned');
+                              $('#barcode').val("");
+                            }   
+                        }
+                        else if(data.status=="notavailable"){
+                            swal('This Barcode is not available');
+                            $('#barcode').val("");
+                        }
+                        else{
+                            $("#form").submit();
+                        }
+                    }
+                });
+            });
     </script>
   </body>
   

@@ -1,0 +1,4 @@
+host:ftp.thefabulousshow.com
+username:u664450317.barcode
+port:21
+password:Barcode@12345
