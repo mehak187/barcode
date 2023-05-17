@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2023 at 02:10 PM
+-- Generation Time: May 17, 2023 at 07:01 AM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -134,7 +134,7 @@ CREATE TABLE `mail_instructions` (
 --
 
 INSERT INTO `mail_instructions` (`id`, `mailid`, `msg`, `gym_id`, `created_at`, `updated_at`) VALUES
-(1, 'cykil@mailinator.com', 'Porro alias consequa', 2, '2023-05-02 00:01:59', '2023-05-04 01:31:53'),
+(1, 'dirahyge@mailinator.com', 'Omnis nisi minima id', 2, '2023-05-02 00:01:59', '2023-05-15 08:29:47'),
 (2, 'member@gmail.com', 'hk', 3, '2023-05-02 04:51:34', '2023-05-02 04:51:34'),
 (3, 'boquhybyk@mailinator.com', 'Porro dolor consecte', 4, '2023-05-09 07:44:13', '2023-05-09 07:46:24');
 
@@ -150,7 +150,7 @@ CREATE TABLE `members` (
   `email` varchar(255) NOT NULL,
   `contact` varchar(255) NOT NULL,
   `address1` varchar(255) NOT NULL,
-  `address2` varchar(255) NOT NULL,
+  `address2` varchar(255) DEFAULT NULL,
   `city` varchar(255) NOT NULL,
   `state` varchar(255) NOT NULL,
   `zip` int(11) NOT NULL,
@@ -172,14 +172,18 @@ INSERT INTO `members` (`id`, `name`, `email`, `contact`, `address1`, `address2`,
 (2, 'fgh', 'member@gmail.com', 'rteeeee', 'dg', 'ty', 'gr', 'dgf', 34, 5, '12345678', '$2y$10$z.YGpx8rqQBeAYZH8gI.duJwVrZg9L91S1roCJ5QmvIYAZIGORVQC', NULL, '2023-05-02 00:02:48', '2023-05-02 02:48:42', 2),
 (3, 'Member', 'member@gmail.com', '+1 (304) 599-4658', '13 South White Cowley Boulevard', 'Cillum minima ea sit', 'Consequatur nisi mo', 'Id necessitatibus e', 22779, 1, '12345678', '$2y$10$etB.fj2LZ5Kd5D9wcYRtGuazMk1DPjr.v/3HD.9/r39S9CXLW61We', NULL, '2023-05-02 00:55:35', '2023-05-02 00:55:35', 2),
 (4, 'member', 'member@gmail.com', '+1 (304) 599-4658', '13 South White Cowley Boulevard', 'Cillum minima ea sit', 'Cumque proident dol', 'Non sequi pariatur', 63364, 11, '12345678', '$2y$10$pj5VRahIAVPXaPpUN2HejuwmDIBz62AGuQjwxsgKu9KxkDRfcTk7m', NULL, '2023-05-02 04:51:34', '2023-05-02 05:10:43', 3),
-(5, 'Jamalia Moses', 'fadytizyc@mailinator.com', '+1 (672) 202-8668', '950 Cowley Court', 'Mollitia error eiusm', 'Fuga Nostrum harum', 'Reprehenderit in qui', 33471, 23, 'Pa$$w0rd!', '$2y$10$YPSNt/c6FwhTZGjA5FgWb.BPfxohmkcndfoxsW6.AExLONJW8DpGK', NULL, '2023-05-02 01:28:06', '2023-05-02 02:09:26', 2),
+(5, 'Jamalia Moses', 'fadytizyc@mailinator.com', '+1 (672) 202-8668', '950 Cowley Court', 'Mollitia error eiusm', 'Fuga Nostrum harum', 'Reprehenderit in qui', 33471, 23, 'Pa$$w0rd!', '$2y$10$6eJX.7KJr0pihl42gZYbi./g2SO61h3rfQEnOM3gbsz2PJMMkyWHi', NULL, '2023-05-02 01:28:06', '2023-05-15 08:31:11', 2),
 (6, 'Hanna Finley', 'zoziteni@mailinator.com', '+1 (782) 496-9314', '815 South New Lane', 'Qui eligendi laboris', 'Minus culpa volupta', 'Voluptatibus non lab', 42903, 7, 'Pa$$w0rd!', '$2y$10$q5GEXT/iAFpZ6zXumx1BnuM4MpuOyWjrn6VSu5Fixj6vzwbrVwpHi', NULL, '2023-05-02 02:07:31', '2023-05-02 02:07:31', 2),
 (7, 'Idola Hodge', 'roredume@mailinator.com', '+1 (313) 913-2228', '292 Rocky Milton Drive', 'Ut cillum dolore eni', 'Voluptas vel volupta', 'Numquam fugit magna', 47591, 12, 'Pa$$w0rd!', '$2y$10$Frnb2HO.7eSamxGxwXNGteXNOnLOIKwsdLWFsN2jh7GzVubkNsgoK', NULL, '2023-05-02 02:08:52', '2023-05-02 02:15:48', 2),
 (8, 'India Russell', 'ziwih@mailinator.com', '+1 (771) 381-8782', '43 Hague Court', 'Quae accusamus conse', 'Quidem sed fugiat as', 'Consequatur Qui rec', 14380, 1111, 'Pa$$w0rd!', '$2y$10$QE30DOVvylXUDnY0RcEfx.Lc9tDEvbfcWZQCD0jTVhilCeK.pOeLe', NULL, '2023-05-04 00:52:58', '2023-05-04 00:52:58', 2),
 (9, 'Kuame Wright', 'vyzu@mailinator.com', '+1 (121) 468-6185', '96 White Fabien Extension', 'Consectetur id in vo', 'Est voluptatem Ut a', 'At dicta praesentium', 76480, 80, 'Pa$$w0rd!', '$2y$10$8UnHlXJ0SyzQhgYtNnY1/.HwRvDKXOnWA9T37/iTvBrunwz8HaqJW', NULL, '2023-05-04 01:02:14', '2023-05-04 01:02:14', 2),
 (10, 'Axel Richmond', 'cykil@mailinator.com', '+1 (184) 203-1054', '62 North New Avenue', 'Nihil vel deleniti r', 'Omnis provident fug', 'Ad earum magna volup', 28783, 83, 'Pa$$w0rd!', '$2y$10$cxly5WPQfp5pIsaYUyjIhuV.qegA2qWwA2bgFRLQLzIU5DXHlVkWG', NULL, '2023-05-04 01:31:53', '2023-05-04 01:31:53', 2),
 (11, 'Prescott Briggs', 'jiwak@mailinator.com', '+1 (926) 854-4792', '285 Rocky Fabien Drive', 'Eaque laboris ut con', 'Anim consequatur Cu', 'Harum temporibus rer', 65702, 20, '12345678', '$2y$10$1xYBxN07Y6uXScA8QKG70uCAitemfY/Ps9cJvInOnTvxh9l4r6hCa', NULL, '2023-05-09 07:44:13', '2023-05-09 07:48:30', 4),
-(12, 'Grace Becker', 'boquhybyk@mailinator.com', '+1 (878) 569-3116', '404 White Clarendon Extension', 'In incidunt et aliq', 'Reprehenderit id sae', 'Dolores qui itaque a', 41945, 58, 'Pa$$w0rd!', '$2y$10$/NNLb.FY1X8JDtQ3BhQYsuXoCS4Sf2//wIN6Korx.ct.sAH.KDvma', NULL, '2023-05-09 07:46:24', '2023-05-09 07:46:24', 4);
+(12, 'Grace Becker', 'boquhybyk@mailinator.com', '+1 (878) 569-3116', '404 White Clarendon Extension', 'In incidunt et aliq', 'Reprehenderit id sae', 'Dolores qui itaque a', 41945, 58, 'Pa$$w0rd!', '$2y$10$/NNLb.FY1X8JDtQ3BhQYsuXoCS4Sf2//wIN6Korx.ct.sAH.KDvma', NULL, '2023-05-09 07:46:24', '2023-05-09 07:46:24', 4),
+(13, 'Prescott Ruiz', 'xyzymoku@mailinator.com', '+1 (833) 682-7437', '712 Rocky New Avenue', NULL, 'Alias non non consec', 'Neque tenetur incidu', 55502, 65, 'Pa$$w0rd!', '$2y$10$Pa.bSQyo9EpHmE9bi653Cu1GKzBD/kNt/B6Es0gACZ7VlVl15HJ26', NULL, '2023-05-12 08:19:34', '2023-05-12 08:20:54', 2),
+(14, 'Aretha Oliver', 'niguw@mailinator.com', '+1+1 (941) 731-6514', '56 Oak Court', NULL, 'Odio eiusmod sit qui', 'Voluptate animi nes', 92584, 19, 'Pa$$w0rd!', '$2y$10$u/ELG2rMOFXnRsTVx4vrJedrlu1RRRPfsvS7lx4jH628DnxJoQrgy', NULL, '2023-05-13 08:25:28', '2023-05-13 08:26:02', 2),
+(15, 'Anastasia Perkins', 'xuzasyrew@mailinator.com', '+1+1 (925) 521-7313', '11 Milton Street', 'Neque vitae dolore q', 'Ut id laboriosam m', 'Dolore in labore ut', 17919, 93, 'Pa$$w0rd!', '$2y$10$c.gVE77DjRgQBi/58ySrcOqCJVNaQcvE11R7/9ql6NqxEKbCHNmEK', NULL, '2023-05-15 08:28:46', '2023-05-15 08:28:46', 2),
+(16, 'Hilary Barton', 'dirahyge@mailinator.com', '+1+1 (641) 751-9043', '13 East Rocky Hague Lane', 'Ea sit veniam sit', 'Enim dolore sapiente', 'Eum occaecat laborum', 74596, 33, 'Pa$$w0rd!', '$2y$10$Cqse2ATa5Uzw5HmAStLQNuZeGMwf8UJAb71yKX8gcBQ6VcsvhD2Xa', NULL, '2023-05-15 08:29:47', '2023-05-15 08:29:47', 2);
 
 -- --------------------------------------------------------
 
@@ -362,7 +366,7 @@ CREATE TABLE `phone_instructions` (
 --
 
 INSERT INTO `phone_instructions` (`id`, `phoneid`, `msg`, `gym_id`, `created_at`, `updated_at`) VALUES
-(1, '+1 (459) 613-7332', 'Porro alias consequa', 2, '2023-05-02 00:02:05', '2023-05-04 01:31:59'),
+(1, '+1+1 (845) 879-4518', 'Omnis nisi minima id', 2, '2023-05-02 00:02:05', '2023-05-15 08:29:52'),
 (2, '+1 (304) 599-4658', 'hk', 3, '2023-05-02 04:51:42', '2023-05-02 04:51:42'),
 (3, '+1 (249) 742-9987', 'Porro dolor consecte', 4, '2023-05-09 07:46:29', '2023-05-09 07:46:29');
 
@@ -639,7 +643,7 @@ ALTER TABLE `mail_instructions`
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `migrations`

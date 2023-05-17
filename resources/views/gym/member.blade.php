@@ -321,7 +321,7 @@
             for (i = 0; i < serviceBoxes.length; i++) {
                 serviceName = serviceBoxes[i].querySelector(".searchable");
                 txtValue = serviceName.textContent || serviceName.innerText;
-                if (txtValue.toUpperCase().startsWith(filter)) {
+                if (serviceName.innerText.toUpperCase().startsWith(filter)) {
                     serviceBoxes[i].style.display = "";
                     displayedCount++;
 
