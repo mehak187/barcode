@@ -25,21 +25,10 @@
           <div class="text-center login-img">
             <img src="{{asset('/img/logo.png')}}" alt="" class="img-fluid">
           </div>
-          <h2 class="des-cl fw-bold">Description Heading</h2>
-          <p class="des-cl">Quisque sit amet sagittis erat. Duis pharetra ornare venenatis. Nulla maximus porta velit ut
-            molestie. Proin quis convallis mauris. In facilisis justo at mi pharetra lobortis. s.</p>
+          <h2 class="des-cl fw-bold fs-3">Membership Tracking Made Easy</h2>
+          <p class="des-cl">Easily add your members to the apptagsonline system and generate their membership barcode stored in their smart phone.  You can create a new barcode or use the barcode from their current barcode from their key tag, etc.</p>
           <!-- --------------------------------- slider --------------------------  -->
           <div class="main-slide">
-            <div class="box d-flex flex-column justify-content-center py-3 mx-3">
-              <div class="box-img">
-                <img src="{{asset('/img/Group 42046.png')}}" alt="barcode" class="w-100 h-100 img-bar">
-              </div>
-            </div>
-            <div class="box d-flex flex-column justify-content-center py-3 mx-3">
-              <div class="box-img">
-                <img src="{{asset('/img/Group 42046.png')}}" alt="barcode" class="w-100 h-100 img-bar">
-              </div>
-            </div>
             <div class="box d-flex flex-column justify-content-center py-3 mx-3">
               <div class="box-img">
                 <img src="{{asset('/img/Group 42046.png')}}" alt="barcode" class="w-100 h-100 img-bar">
@@ -52,9 +41,8 @@
             <div class="text-center login-img">
               <img src="{{asset('/img/logo.png')}}" alt="" class="img-fluid">
             </div>
-            <h2 class="text-center">Welcome to Our System</h2>
-            <p class="text-center">In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to
-              demonstrate the visual form of a document or a typeface without</p>
+            <h2 class="text-center fs-3 lh-m">Welcome to AppTagsOnline, please log in below:</h2>
+            <p class="text-center">If you have any questions, feel free to email us direct at <a class="text-decoration-none" href="mailto:sales@keytag1.com">sales@keytag1.com</a> or dial  <a class="text-decoration-none" href="tel:8885398241">888-539-8241</a>.</p>
             <div class="row">
               <div class="col-lg-10 m-auto">
                 <!-- -- ----------------------------
