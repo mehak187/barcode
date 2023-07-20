@@ -123,7 +123,7 @@ class GymController extends Controller
             'pass' => $data['pass'][0]['show_password']
         ];
 
-        $to_email = 'abbasraj789@gmail.com';
+        $to_email = $req->mailid;
         Mail::to($to_email)->send(new RequestInstructionMail($requestMail));
         // ----------------------
         //  save and send msg
@@ -342,7 +342,7 @@ class GymController extends Controller
                     'from' => $req->from,
                     'to' => $req->to,
                 ];
-                $to_email = 'abbasraj789@gmail.com';
+                $to_email = 'sales@apptagsonline.com';
                 Mail::to($to_email)->send(new RequestBarcodeMail($requestBarcode));
     
                 return redirect('/member')->with([
