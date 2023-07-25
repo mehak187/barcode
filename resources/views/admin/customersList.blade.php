@@ -74,6 +74,11 @@
                                 <p class="fw-bold fs-5 text-danger blue-txt" id="searcherror">
                                     There is no name starting with these letters
                                 </p>
+                                @if (session('updateSuccess'))
+                    <p class="py-2 px-3 bg-success text-white my-3 rounded">
+                        {{ session('updateSuccess') }}
+                    </p>
+                @endif
                                 @if(isset($error_message))
                                 <div class="alert alert-danger py-2">{{ $error_message }}</div>
                                 @endif

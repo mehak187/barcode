@@ -29,6 +29,7 @@ class User extends Authenticatable
         'state',
         'zip',
         'password',
+        'show_password',
         'role',
         'is_email_verified',
         'photo',

@@ -62,6 +62,7 @@ class UserController extends Controller
             'zip' => $req->zip,
             'role' => $req->role,
             'password' => $hashedPassword,
+            'show_password' => $req->password,
             'photo' => $photo_name,
         ]);
         session()->put('mid', $user->id);
@@ -80,6 +81,11 @@ class UserController extends Controller
     }
     public function editGym(Request $req)
     {
+        $req->validate([
+            'password' => 'required|string|min:8',
+            'gymImg' => 'file|mimes:jpeg,png,jpg,jfif'
+        ]);
+
         $photo = $req->file('gymImg');
         $password = $req->password;
         $hashedPassword = bcrypt($password);
@@ -100,6 +106,7 @@ class UserController extends Controller
                 'city' => $req->city,
                 'state' => $req->state,
                 'zip' => $req->zip,
+                'show_password' => $req->password,
                 'password' => $hashedPassword,
                 'photo' => $photo_name
             ]);
@@ -115,11 +122,12 @@ class UserController extends Controller
                 'city' => $req->city,
                 'state' => $req->state,
                 'zip' => $req->zip,
+                'show_password' => $req->password,
                 'password' => $hashedPassword
             ]);
         }
     
-        return redirect('/customersList')->with('updateSuccess', "Member updated successfully");
+        return redirect('/customersList')->with('updateSuccess', "Customer updated successfully");
     }
     
     public function saveRequestBarcode(Request $req)

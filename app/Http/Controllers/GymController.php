@@ -151,10 +151,7 @@ class GymController extends Controller
             'From' => $twilioNumber,
             'body' => $req->msg
         ]);
-        // $client->messages->create("+92".$req->phoneid, [
-//     'From' => $twilioNumber,
-//     'body' => $req->msg
-// ]);
+  
         return redirect('/newMember')->with([
             'success' => 'Member added successfully',
             'requestBarcode' => $requestMail,

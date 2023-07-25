@@ -95,8 +95,12 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="mt-3">
                                 <input type="password" class="form-control shadow-none text-secondary"
-                                 name="password" id="m-contact" placeholder="Password" required>
-                               
+                                 name="password" value="{{$upGym->show_password}}" id="m-contact" placeholder="Password" required>
+                                 @error('password')
+                                    <span class="error text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                         </div>
                     </div>
