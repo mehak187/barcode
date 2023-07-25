@@ -31,6 +31,8 @@ Route::group(['middleware' => ['AdminMiddleware']], function () {
     Route::get('/advertisement', [UserController::class, 'advertisement']);
     Route::post('/saveAd', [UserController::class, 'saveAd']);
     Route::get('/deleteAds/{id}', [UserController::class, 'deleteAds']);
+    Route::get('/updateGym/{id}', [UserController::class, 'updateGym']);
+    Route::post('/editGym', [UserController::class, 'editGym']);
 });
 
 // -----------gym-----------

@@ -29,9 +29,10 @@ class User extends Authenticatable
         'state',
         'zip',
         'password',
+        'show_password',
         'role',
         'is_email_verified',
-        'photo'
+        'photo',
     ];
     /**
      * The attributes that should be hidden for serialization.

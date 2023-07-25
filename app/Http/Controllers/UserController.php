@@ -62,12 +62,138 @@ class UserController extends Controller
             'zip' => $req->zip,
             'role' => $req->role,
             'password' => $hashedPassword,
+            'show_password' => $req->password,
             'photo' => $photo_name,
         ]);
         session()->put('mid', $user->id);
         return redirect('/customersList')->with('success', "Gym added successfully");
     }
+    public function updateGym($id)
+    {
+        // ---start of photo of login user---------
+        // $mphoto = auth()->user()->photo;
+        // $data['photo'] = $mphoto;
+        // $data['name'] = auth()->user()->name;
+        // ---end of photo of login user---------
+        $mid = auth()->user()->id;
+        $data['upGym'] = User::where('id', $id)->first();
+        return view('admin.updateGym', $data);
+    }
+    public function editGym(Request $req)
+    {
+        $req->validate([
+            'password' => 'required|string|min:8',
+            'gymImg' => 'file|mimes:jpeg,png,jpg,jfif'
+        ]);
+
+        $photo = $req->file('gymImg');
+        $password = $req->password;
+        $hashedPassword = bcrypt($password);
     
+        if ($photo !== null) {
+            $photo_name = time() . "_" . $photo->getClientOriginalName();
+            $destinationpath = public_path('myimgs');
+            $photo->move($destinationpath, $photo_name);
+    
+            User::find($req->id)->update([
+                'name' => $req->name,
+                'fname' => $req->fname,
+                'lname' => $req->lname,
+                'email' => $req->email,
+                'contact' => $req->contact,
+                'address1' => $req->address1,
+                'address2' => $req->address2,
+                'city' => $req->city,
+                'state' => $req->state,
+                'zip' => $req->zip,
+                'show_password' => $req->password,
+                'password' => $hashedPassword,
+                'photo' => $photo_name
+            ]);
+        } else {
+            User::find($req->id)->update([
+                'name' => $req->name,
+                'fname' => $req->fname,
+                'lname' => $req->lname,
+                'email' => $req->email,
+                'contact' => $req->contact,
+                'address1' => $req->address1,
+                'address2' => $req->address2,
+                'city' => $req->city,
+                'state' => $req->state,
+                'zip' => $req->zip,
+                'show_password' => $req->password,
+                'password' => $hashedPassword
+            ]);
+        }
+    
+        return redirect('/customersList')->with('updateSuccess', "Customer updated successfully");
+    }
+    
+    public function saveRequestBarcode(Request $req)
+    {
+        $mid = auth()->user()->id;
+
+        $Gymtotaltwo = GymBarcode::where('gym_barcodes.gym_id', $mid) 
+        ->orderBy('from','asc')->get();
+        $numbers='';
+        $results='';
+        foreach($Gymtotaltwo as $available)
+        {
+            $numbers='';
+            $range = range(intval($available->from), intval($available->to));
+            $numbers = implode(",", $range);
+            $results=$results.$numbers.',';
+        }
+        $results=explode(",", $results);
+
+        if ((in_array($req->from, $results)) || (in_array($req->to, $results))){
+            return redirect('/member')->with([
+                'requestError' => 'You already have these barcodes. Choose any other barcode.',
+            ]);
+        }  
+        // else if (in_array($req->from, $resultstwo)) {
+        //     return redirect('/member')->with([
+        //         'alreadyrequestError' => 'Aleady requested barcodes',
+        //     ]);
+        // }
+        else{
+            $requestBarcode = RequestBarcode::where('gym_id', $mid)->exists();
+            if ($requestBarcode) {
+                return redirect('/member')->with([
+                    'alreadysendrequest' => 'You have already sent barcode request.',
+                ]);
+            } 
+            // -----------if request already exist-----------
+            else {
+                RequestBarcode::create([
+                    'barcodes' => $req->barcodes,
+                    'gym_id' => $req->gym_id,
+                    'date' => $req->date,
+                    'from' => $req->from,
+                    'to' => $req->to,
+                ]);
+    
+                $mname = auth()->user()->name;
+
+                $requestBarcode = [
+                    'barcodes' => $req->barcodes,
+                    'gym_id' => $req->gym_id,
+                    'date' => $req->date,
+                    'mname' => $mname,
+                    'from' => $req->from,
+                    'to' => $req->to,
+                ];
+                $to_email = 'sales@apptagsonline.com';
+                Mail::to($to_email)->send(new RequestBarcodeMail($requestBarcode));
+    
+                return redirect('/member')->with([
+                    'requestSuccess' => 'Request sent successfully',
+                    'requestBarcode' => $requestBarcode,
+                ]);
+            }
+        }
+    }
     public function saveGymBarcode(Request $req)
     {
         $check=GymBarcode::where('gym_id',$req->gym_id)->where(function ($query) use ($req) {
@@ -269,5 +395,7 @@ class UserController extends Controller
         Ad::where('id', $id)->delete();
         return redirect()->back()->with('success',' Ad Deleted');
     }
+
+   
         
 }
