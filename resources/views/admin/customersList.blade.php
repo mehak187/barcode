@@ -88,6 +88,8 @@
                                 <div class="bg-grey row px-3 align-items-center py-3 rounded-3 my-3 customer service-box">
                                     <div class="col-sm-11">
                                         <div class="row">
+                                        <a href="/updateGym/{{ $gym['id'] }}" class="text-dark text-decoration-none">
+                                            <div class="row">
                                             <div class="col-md-6 my-2 my-lg-0 col-xl-4 d-flex align-items-center">
                                                 <div class="customer-img me-2">
                                                     <img src="<?php echo asset('myimgs/' . $gym['photo']); ?>" class="rounded-circle " alt="">
@@ -122,6 +124,8 @@
                                             ?>
                                                 <p class="mb-0 text-warning">{{ $totalBarcode }} Barcodes</p>
                                             </div>
+                                            </div>
+                                        </a>
                                         </div>
                                     </div>
                                     <div class="col-sm-1 d-flex justify-content-end align-items-center">
@@ -138,7 +142,9 @@
                                     <div class="bg-grey row px-3 align-items-center py-3 rounded-3 my-3 customer-all service-box">
                                         <div class="col-sm-11">
                                             <div class="row ">
-                                                <div class="col-md-6 my-2 my-lg-0 col-xl-4 d-flex align-items-center">
+                                              <a href="/updateGym/{{ $gym['id'] }}" class="text-dark text-decoration-none">
+                                              <div class="row">
+                                              <div class="col-md-6 my-2 my-lg-0 col-xl-4 d-flex align-items-center">
                                                     <div class="customer-img me-2">
                                                         <img src="<?php echo asset('myimgs/' . $gym['photo']); ?>" class="rounded-circle "
                                                             alt="">
@@ -172,6 +178,8 @@
                                                      ?>
                                                     <p class="mb-0 text-warning">{{ $totalBarcode }} Barcodes</p>
                                                 </div>
+                                              </div>
+                                              </a>
                                             </div>
                                         </div>
                                         <div class="col-sm-1 d-flex justify-content-end align-items-center">
