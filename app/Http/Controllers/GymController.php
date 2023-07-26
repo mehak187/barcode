@@ -86,7 +86,7 @@ class GymController extends Controller
         $emailExists = DB::table('members')->where('email', $req->email)->exists();
 
         if ($emailExists) {
-            return redirect('/newMember')->with('mailexisterror', "This email already exists");
+            return redirect('/newMember')->with('mailexisterror', "This email already exists for another member");
         }
 
         Member::create([
@@ -262,11 +262,14 @@ class GymController extends Controller
     }
     public function editmember(Request $req)
     {
-        $emailExists = DB::table('members')->where('email', $req->email)->exists();
+        $emailExists = DB::table('members')
+        ->where('email', $req->email)
+        ->where('id', '!=', $req->id) // Exclude the current member's ID
+        ->exists();
 
-        if ($emailExists) {
-            return redirect('/member')->with('mailexisterror', "This email already exists");
-        }
+    if ($emailExists) {
+        return redirect('/member')->with('mailexisterror', "This email already exists for another member");
+    }
 
         Member::find($req->id)->update([
             'name' => $req->name,
