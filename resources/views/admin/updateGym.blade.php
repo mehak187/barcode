@@ -35,7 +35,7 @@
     <!-- ============================= Start ================================  -->
       <div class="container">
         <div class="py-3 d-flex align-items-center"> 
-          <a href="/member">
+          <a href="/customersList">
             <i class="fa-solid fa-chevron-left text-warning border border-warning p-2 rounded-3"></i>
           </a>
           <h2 class="blue-cl fw-bold ps-3 m-0 fs-3">Update Gym</h2>
@@ -183,4 +183,18 @@
         integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{asset('/js/main.js')}}"></script>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+    
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result);
+                };
+    
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
 </html>
