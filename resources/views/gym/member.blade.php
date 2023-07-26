@@ -99,6 +99,11 @@
                         {{ session('updateSuccess') }}
                     </p>
                 @endif
+                @if (session('mailexisterror'))
+                <p class="py-2 px-3 bg-danger text-white my-3 rounded">
+                    {{ session('mailexisterror') }}
+                </p>
+            @endif
                 @if (isset($error_message))
                     <div class="alert alert-danger py-2">{{ $error_message }}</div>
                 @endif
