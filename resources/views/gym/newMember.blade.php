@@ -73,6 +73,12 @@
                             {{ session('noMember') }}
                         </p>
                     @endif
+                    @if (session('mailexisterror'))
+                    <p class="py-2 px-3 bg-danger text-white my-3 rounded">
+                        {{ session('mailexisterror') }}
+                    </p>
+                @endif
+                    
                     @csrf
                     <input type="hidden" class="form-control shadow-none text-secondary" name="photo" value="">
                     <input type="hidden" class="form-control shadow-none text-secondary" name="gym_id"

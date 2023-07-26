@@ -6,6 +6,8 @@ use App\Mail\RequestBarcodeMail;
 
 use App\Mail\RequestInstructionMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
+
 use Twilio\Rest\Client;
 
 use App\Models\annoucement;
@@ -81,6 +83,11 @@ class GymController extends Controller
             'mailid'=>'required'
             // 'gymImg' => 'required|file|mimes:jpeg,png,jpg,jfif'
         ]);
+        $emailExists = DB::table('members')->where('email', $req->email)->exists();
+
+        if ($emailExists) {
+            return redirect('/newMember')->with('mailexisterror', "This email already exists");
+        }
 
         Member::create([
             'name' => $req->name,
@@ -255,6 +262,12 @@ class GymController extends Controller
     }
     public function editmember(Request $req)
     {
+        $emailExists = DB::table('members')->where('email', $req->email)->exists();
+
+        if ($emailExists) {
+            return redirect('/member')->with('mailexisterror', "This email already exists");
+        }
+
         Member::find($req->id)->update([
             'name' => $req->name,
             'email' => $req->email,
