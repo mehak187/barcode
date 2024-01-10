@@ -21,7 +21,6 @@ use App\Models\mailInstruction;
 use App\Models\phoneInstruction;
 use Hash;
 
-
 class GymController extends Controller
 {
     public function newMember()
